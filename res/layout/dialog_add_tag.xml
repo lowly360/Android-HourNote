@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="312dp"
+    android:layout_height="255dp"
+    android:layout_margin="1dp"
+    android:background="@drawable/dialog_bg" >
+    
+    <EditText
+        android:id="@+id/et_tagname"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/dialog_edit_bg"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="请输入标签名"
+        android:maxLines="1"
+        android:maxLength="20"
+        android:singleLine="true" >
+    </EditText>
+
+    <ImageView
+        android:id="@+id/iv_ok"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@id/et_tagname"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/dialog_btn_ok" />
+
+    <ImageView
+        android:id="@+id/iv_cancel"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignLeft="@+id/et_tagname"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="32dp"
+        android:layout_marginLeft="13dp"
+        android:src="@drawable/dialog_btn_cancel" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="54dp"
+        android:singleLine="true"
+        android:text="添加标签"
+        android:textColor="#67997b"
+        android:textSize="30sp" />
+
+    
+
+</RelativeLayout>

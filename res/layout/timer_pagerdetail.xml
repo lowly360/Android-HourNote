@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="标题"
+        android:textColor="#aa666666"
+        android:textSize="16sp" />
+
+    <FrameLayout
+        android:layout_width="310dp"
+          android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/tv_timer_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/add_text_content_shape"
+            android:ems="10"
+            android:gravity="center"
+            android:maxLength="10"
+            android:minHeight="40dp"
+            android:singleLine="true"
+            android:text="hehehe"
+            android:textColor="#67997b"
+            android:textSize="28sp" />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="1dp"
+            android:src="@drawable/pencil" />
+    </FrameLayout>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="内容"
+        android:textColor="#aa666666"
+        android:textSize="16sp" />
+
+    <FrameLayout
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/add_text_content_shape" >
+
+        <TextView
+            android:id="@+id/tv_timer_content"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@null"
+            android:ems="10"
+            android:gravity="top"
+            android:minHeight="120dp"
+            android:text="测试字体测试字体测试字体测试字体测试字体测试字体测试字体测试字体测试字体测试字体测试字体测试字体测试字体"
+            android:textColor="#686868"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="1dp"
+            android:src="@drawable/pencil" />
+    </FrameLayout>
+
+</LinearLayout>

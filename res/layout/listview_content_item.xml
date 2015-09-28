@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="255dp"
+    android:layout_height="74dp"
+    android:layout_margin="1dp"
+    android:gravity="center_vertical"
+    android:minHeight="74dp"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/listview_item_bg_shape" >
+
+        <TextView
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="6dp"
+            android:id="@+id/tv_content_title"
+            android:layout_width="148dp"
+            android:layout_height="wrap_content"
+            android:text="背六级单词"
+            android:textColor="#67997b"
+            android:singleLine="true"
+            android:textSize="28sp" />
+
+        <TextView
+            android:id="@+id/tv_content_time"
+            android:layout_width="70dp"
+            android:layout_height="15dp"
+            android:layout_toRightOf="@+id/tv_content_title"
+            android:layout_alignBottom="@+id/tv_content_title"
+            android:layout_marginLeft="15dp"
+            android:layout_alignParentRight="true"
+            android:singleLine="true"
+            android:text="剩余 19:35:40"
+            android:textColor="#666666"
+            android:textSize="12sp" />
+        
+        <TextView 
+            android:id="@+id/tv_content_content"
+            android:layout_width="match_parent"
+       		android:layout_height="wrap_content"
+       		android:layout_below="@id/tv_content_title"
+       		android:text="详细内容.................."
+       		android:layout_marginLeft="8dp"
+            android:layout_marginTop="2dp"
+       		android:singleLine="true"
+       		 android:textColor="#666666"
+       		android:textSize="20sp"
+            />
+        
+    </RelativeLayout>
+
+</LinearLayout>
