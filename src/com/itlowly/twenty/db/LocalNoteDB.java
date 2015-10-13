@@ -13,9 +13,11 @@ import com.itlowly.twenty.db.dao.LocalNoteOperHelper;
 
 public class LocalNoteDB {
 	private LocalNoteOperHelper helper;
+	private Context context;
 
 	public LocalNoteDB(Context context) {
 		helper = new LocalNoteOperHelper(context);
+		this.context = context;
 	}
 
 	/**
@@ -31,6 +33,13 @@ public class LocalNoteDB {
 			ContentValues values = new ContentValues();
 			values.put("type", tagName);
 			db.insert("tag", null, values);
+
+			// 添加历史纪录
+			values.clear();
+			values.put("historyType", "AddTag");
+			values.put("tagName", tagName);
+			db.insert("history", null, values);
+
 			db.close();
 		}
 	}
@@ -64,6 +73,13 @@ public class LocalNoteDB {
 	public void deleteTag(String tagName) {
 		SQLiteDatabase db = helper.getWritableDatabase();
 		db.delete("tag", "type = ?", new String[] { tagName });
+
+		// 添加历史纪录
+		ContentValues values = new ContentValues();
+		values.put("historyType", "DeleteTag");
+		values.put("tagName", tagName);
+		db.insert("history", null, values);
+
 		db.close();
 	}
 
@@ -112,6 +128,10 @@ public class LocalNoteDB {
 			bean.setData(query.getString(3));
 			bean.setTime(query.getString(4));
 			bean.setType(query.getString(5));
+			bean.setIsTwenty(query.getString(6));
+		} else {
+			Toast.makeText(context, "获取不到对应的数据！ From LocalNoteDB",
+					Toast.LENGTH_SHORT).show();
 		}
 		query.close();
 		db.close();
@@ -128,7 +148,7 @@ public class LocalNoteDB {
 	 * @param type
 	 */
 	public boolean addData(String title, String content, String data,
-			String time, String type) {
+			String time, String type, String isTwenty) {
 		if (findDateWithTag(title, type)) { // 如果发现同一tag内存在相同的title则不添加进数据库中
 
 			return false;
@@ -141,8 +161,15 @@ public class LocalNoteDB {
 			values.put("data", data);
 			values.put("time", time);
 			values.put("type", type);
+			values.put("isTwenty", isTwenty);
 
 			db.insert("data", null, values);
+
+			// 添加历史纪录
+			values.put("historyType", "AddData");
+			db.insert("history", null, values);
+			values.clear();
+
 			db.close();
 
 			return true;
@@ -192,8 +219,7 @@ public class LocalNoteDB {
 	}
 
 	/**
-	 * 修改数据库中的data中的time
-	 * 
+	 * 修改数据库中的data中的剩余时间
 	 * @param title
 	 * @param tag
 	 * @param newTime
@@ -203,19 +229,48 @@ public class LocalNoteDB {
 		SQLiteDatabase db = helper.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put("title", dataBean.getTitle());
-		values.put("content", dataBean.getContent());		
+		values.put("content", dataBean.getContent());
 		values.put("time", newTime);
 		values.put("type", dataBean.getType());
 		values.put("data", dataBean.getData());
-		int update = db.update("data", values, "title = ? and type = ?", new String[] {
-				dataBean.getTitle(), dataBean.getType() });
-		
+		values.put("isTwenty", dataBean.getIsTwenty());
+		int update = db.update("data", values, "title = ? and type = ?",
+				new String[] { dataBean.getTitle(), dataBean.getType() });
+
 		if (update != 0) {
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}
+	
+	/**
+	 * 更新数据库中的数据
+	 * @param title
+	 * @param type
+	 * @param dataBean
+	 * @return
+	 */
+	public boolean updateData(String title,String type,DataBean dataBean) {
+		SQLiteDatabase db = helper.getWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put("title", dataBean.getTitle());
+		values.put("content", dataBean.getContent());
+		values.put("time", dataBean.getTime());
+		values.put("type", dataBean.getType());
+		values.put("data", dataBean.getData());
+		values.put("isTwenty", dataBean.getIsTwenty());
+		int update = db.update("data", values, "title = ? and type = ?",
+				new String[] { title, type});
+
+		if (update != 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	
 
 	/**
 	 * 按标签查找对应的databean
@@ -238,6 +293,7 @@ public class LocalNoteDB {
 			dataBean.setData(rawQuery.getString(3));
 			dataBean.setTime(rawQuery.getString(4));
 			dataBean.setType(rawQuery.getString(5));
+			dataBean.setIsTwenty(rawQuery.getString(6));
 
 			mDataList.add(dataBean);
 		}
@@ -255,13 +311,37 @@ public class LocalNoteDB {
 	 * @param type
 	 */
 	public boolean deleteData(String title, String type) {
-		SQLiteDatabase db = helper.getReadableDatabase();
+		// 获取要删除的数据bean
+		DataBean dataBean = getDataBean(title, type);
+
+		SQLiteDatabase db = helper.getWritableDatabase();
+
 		int delete = db.delete("data", "title = ? and type = ?", new String[] {
 				title, type });
 
 		if (delete != 0) {
+
+			// 添加历史纪录
+			ContentValues values = new ContentValues();
+
+			values.put("historyType", "DeleteData");
+
+			values.put("title", dataBean.getTitle());
+			values.put("content", dataBean.getContent());
+			values.put("time", dataBean.getTime());
+			values.put("type", dataBean.getType());
+			values.put("data", dataBean.getData());
+			values.put("isTwenty", dataBean.getIsTwenty());
+
+			db.insert("history", null, values);
+
+			db.close();
+
 			return true;
 		} else {
+			Toast.makeText(context, "删除该数据失败！From LocalNoteDB",
+					Toast.LENGTH_SHORT).show();
+			db.close();
 			return false;
 		}
 	}

@@ -36,7 +36,6 @@ public class CountDown extends ContentBasePager {
 
 	public CountDown(Activity activity, String title, String type) {
 		super(activity, title, type);
-		// TODO Auto-generated constructor stub
 
 	}
 

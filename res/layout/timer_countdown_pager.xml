@@ -28,11 +28,23 @@
         android:src="@drawable/red_dot" />
 
     <TextView
+        android:id="@+id/tv_hour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/iv_red_dot"
+        android:layout_alignTop="@+id/iv_red_dot"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="29dp"
+        android:text="19"
+        android:textSize="85sp"
+        android:textStyle="italic|bold" />
+
+    <TextView
         android:id="@+id/tv_cen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/tv_hour"
-        android:layout_below="@+id/tv_hour"
+        android:layout_alignRight="@id/tv_hour"
+        android:layout_below="@id/tv_hour"
         android:text="58"
         android:textSize="55sp"
         android:textStyle="italic|bold" />
@@ -42,23 +54,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/tv_cen"
-        android:layout_marginLeft="5dp"
         android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
         android:layout_toRightOf="@id/tv_cen"
         android:text="32"
         android:textSize="38sp"
-        android:textStyle="italic|bold" />
-
-    <TextView
-        android:id="@+id/tv_hour"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/iv_red_dot"
-        android:layout_alignTop="@+id/iv_red_dot"
-        android:layout_marginLeft="38dp"
-        android:layout_marginTop="20dp"
-        android:text="19"
-        android:textSize="85sp"
         android:textStyle="italic|bold" />
 
 </RelativeLayout>

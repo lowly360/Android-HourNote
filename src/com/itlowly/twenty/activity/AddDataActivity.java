@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -37,6 +38,9 @@ public class AddDataActivity extends Activity implements OnClickListener {
 
 	private String mCurrenerTag ;
 	private int mCurrenerItem = 0;
+	
+	
+	private CheckBox cb_add_isTwenty;
 	
 
 	@Override
@@ -61,6 +65,8 @@ public class AddDataActivity extends Activity implements OnClickListener {
 		btn_setTag = (Button) findViewById(R.id.btn_setTag);
 		
 		btn_setTag.requestFocus();
+		
+		cb_add_isTwenty = (CheckBox) findViewById(R.id.cb_add_isTwenty);
 
 		ib_add_ok = (ImageButton) findViewById(R.id.ib_add_ok);
 		ib_add_cancel = (ImageButton) findViewById(R.id.ib_add_cancel);
@@ -105,11 +111,21 @@ public class AddDataActivity extends Activity implements OnClickListener {
 				Toast.makeText(this, "请输入内容", Toast.LENGTH_SHORT).show();
 				break;
 			}
+			
+			boolean addData = false;
+			if (cb_add_isTwenty.isChecked()) {
+				LocalNoteDB db = new LocalNoteDB(this);
+				addData = db.addData(mTitleString, mContentString,
+							String.valueOf(System.currentTimeMillis()), "72000000",
+							mCurrenerTag,"1");
+			}else {
+				LocalNoteDB db = new LocalNoteDB(this);
+				addData = db.addData(mTitleString, mContentString,
+							String.valueOf(System.currentTimeMillis()), "0",
+							mCurrenerTag,"0");
+			}
 
-			LocalNoteDB db = new LocalNoteDB(this);
-			boolean addData = db.addData(mTitleString, mContentString,
-						String.valueOf(System.currentTimeMillis()), "72000000",
-						mCurrenerTag);
+			
 			if (addData) {
 				Toast.makeText(this, "成功添加 "+mTitleString, Toast.LENGTH_SHORT).show();
 				finish();

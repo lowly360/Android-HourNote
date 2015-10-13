@@ -37,6 +37,14 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int behindWidth=0x7f010004;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int btnText=0x7f01000e;
         /** <p>Must be a floating point value, such as "<code>1.2</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -53,6 +61,22 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int fadeEnabled=0x7f01000a;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int helpText1=0x7f01000f;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int helpText2=0x7f010010;
         /** <p>Must be one of the following constant values.</p>
 <table>
 <colgroup align="left" />
@@ -123,6 +147,14 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
          */
         public static final int viewBehind=0x7f010002;
     }
+    public static final class color {
+        public static final int background=0x7f050004;
+        public static final int green=0x7f050003;
+        public static final int my_gray=0x7f050005;
+        public static final int tag_chosen=0x7f050002;
+        public static final int title_not=0x7f050000;
+        public static final int title_yes=0x7f050001;
+    }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
 
@@ -130,136 +162,215 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f050000;
-        public static final int activity_vertical_margin=0x7f050001;
+        public static final int activity_horizontal_margin=0x7f060000;
+        public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
         public static final int add_text_content_shape=0x7f020000;
-        public static final int btn_back=0x7f020001;
-        public static final int content_btn_leftmenu=0x7f020002;
-        public static final int content_btn_note_add=0x7f020003;
-        public static final int dialog_bg=0x7f020004;
-        public static final int dialog_btn_cancel=0x7f020005;
-        public static final int dialog_btn_ok=0x7f020006;
-        public static final int dialog_edit_bg=0x7f020007;
-        public static final int ic_launcher=0x7f020008;
-        public static final int left_menu_bg=0x7f020009;
-        public static final int left_menu_icon=0x7f02000a;
-        public static final int left_menu_image=0x7f02000b;
-        public static final int listview_item_bg_shape=0x7f02000c;
-        public static final int pencil=0x7f02000d;
-        public static final int red_dot=0x7f02000e;
-        public static final int setting_pic=0x7f02000f;
-        public static final int shape_dot_currener=0x7f020010;
-        public static final int shape_dot_gray=0x7f020011;
-        public static final int tag_add=0x7f020012;
-        public static final int timer_back=0x7f020013;
-        public static final int timer_circle_in=0x7f020014;
-        public static final int timer_circle_out=0x7f020015;
-        public static final int timer_menu=0x7f020016;
-        public static final int timer_pause=0x7f020017;
-        public static final int timer_play=0x7f020018;
-        public static final int timer_quit=0x7f020019;
+        public static final int arrow=0x7f020001;
+        public static final int arrow_down=0x7f020002;
+        public static final int btn_back=0x7f020003;
+        public static final int content_btn_leftmenu=0x7f020004;
+        public static final int content_btn_note_add=0x7f020005;
+        public static final int dialog_bg=0x7f020006;
+        public static final int dialog_btn_cancel=0x7f020007;
+        public static final int dialog_btn_ok=0x7f020008;
+        public static final int dialog_edit_bg=0x7f020009;
+        public static final int gear=0x7f02000a;
+        public static final int group=0x7f02000b;
+        public static final int help2=0x7f02000c;
+        public static final int home=0x7f02000d;
+        public static final int ic_check_circle_black_18dp=0x7f02000e;
+        public static final int ic_check_circle_grey600_18dp=0x7f02000f;
+        public static final int ic_launcher=0x7f020010;
+        public static final int left_menu_bg=0x7f020011;
+        public static final int left_menu_icon=0x7f020012;
+        public static final int left_menu_image=0x7f020013;
+        public static final int listview_item_bg_shape=0x7f020014;
+        public static final int lock=0x7f020015;
+        public static final int lock_open=0x7f020016;
+        public static final int login_bg=0x7f020017;
+        public static final int login_btn_locate_shape=0x7f020018;
+        public static final int login_btn_pressed_shape=0x7f020019;
+        public static final int login_btn_shape=0x7f02001a;
+        public static final int messenger=0x7f02001b;
+        public static final int password=0x7f02001c;
+        public static final int pencil=0x7f02001d;
+        public static final int power=0x7f02001e;
+        public static final int red_dot=0x7f02001f;
+        public static final int selector_detail_editbtn=0x7f020020;
+        public static final int selector_leftmenu_background=0x7f020021;
+        public static final int selector_login_locatemode=0x7f020022;
+        public static final int selector_login_singin=0x7f020023;
+        public static final int setting_pic=0x7f020024;
+        public static final int shape_dot_currener=0x7f020025;
+        public static final int shape_dot_gray=0x7f020026;
+        public static final int tag_add=0x7f020027;
+        public static final int timer_back=0x7f020028;
+        public static final int timer_circle_in=0x7f020029;
+        public static final int timer_circle_out=0x7f02002a;
+        public static final int timer_delete=0x7f02002b;
+        public static final int timer_help=0x7f02002c;
+        public static final int timer_menu=0x7f02002d;
+        public static final int timer_pause=0x7f02002e;
+        public static final int timer_play=0x7f02002f;
+        public static final int timer_quit=0x7f020030;
+        public static final int timer_setting=0x7f020031;
+        public static final int timer_share=0x7f020032;
+        public static final int undo=0x7f020033;
+        public static final int user=0x7f020034;
     }
     public static final class id {
-        public static final int action_settings=0x7f04003b;
-        public static final int btn_addnew=0x7f04001d;
-        public static final int btn_back=0x7f040011;
+        public static final int action_settings=0x7f040066;
+        public static final int btn_about_menu=0x7f040036;
+        public static final int btn_addnew=0x7f04003a;
+        public static final int btn_back=0x7f040010;
+        public static final int btn_detial_edit=0x7f04001a;
+        public static final int btn_edit_editok=0x7f040022;
+        public static final int btn_item_help=0x7f040061;
         public static final int btn_leftmenu=0x7f040006;
+        public static final int btn_login_locate=0x7f04002b;
+        public static final int btn_login_signin=0x7f040029;
         public static final int btn_menu=0x7f040013;
         public static final int btn_setTag=0x7f04000c;
         public static final int btn_setting=0x7f040007;
-        public static final int delete=0x7f04003a;
-        public static final int detail=0x7f040039;
+        public static final int btn_setting_menu=0x7f040037;
+        public static final int cb_add_isTwenty=0x7f04000d;
+        public static final int cb_edit_istwenty=0x7f040021;
+        public static final int delete=0x7f040065;
+        public static final int detail=0x7f040064;
         public static final int et_add_content=0x7f04000b;
         public static final int et_add_title=0x7f040009;
-        public static final int et_tagname=0x7f04001f;
-        public static final int fl_content=0x7f04000f;
-        public static final int fl_left_menu=0x7f040010;
+        public static final int et_login_password=0x7f040028;
+        public static final int et_login_username=0x7f040026;
+        public static final int et_tagname=0x7f040044;
+        public static final int fl_content=0x7f040023;
+        public static final int fl_left_menu=0x7f040024;
         public static final int fullscreen=0x7f040003;
-        public static final int ib_add_cancel=0x7f04000d;
-        public static final int ib_add_ok=0x7f04000e;
-        public static final int ib_timer_pause=0x7f040019;
-        public static final int ib_timer_play=0x7f040018;
-        public static final int ib_timer_quit=0x7f04001a;
-        public static final int iv_cancel=0x7f040021;
-        public static final int iv_circle_in=0x7f040032;
-        public static final int iv_circle_out=0x7f040031;
-        public static final int iv_leftmenu_icon=0x7f040023;
-        public static final int iv_ok=0x7f040020;
-        public static final int iv_red_dot=0x7f040033;
-        public static final int iv_tagAdd=0x7f04002d;
-        public static final int iv_tag_delete=0x7f04002f;
-        public static final int iv_timer_edit=0x7f040017;
+        public static final int ib_add_cancel=0x7f04000e;
+        public static final int ib_add_ok=0x7f04000f;
+        public static final int ib_timer_pause=0x7f040034;
+        public static final int ib_timer_play=0x7f040033;
+        public static final int ib_timer_quit=0x7f040035;
+        public static final int iv_cancel=0x7f040046;
+        public static final int iv_circle_in=0x7f04005a;
+        public static final int iv_circle_out=0x7f040059;
+        public static final int iv_leftmenu_icon=0x7f040048;
+        public static final int iv_ok=0x7f040045;
+        public static final int iv_red_dot=0x7f04005b;
+        public static final int iv_tagAdd=0x7f040055;
+        public static final int iv_tag_delete=0x7f040057;
+        public static final int iv_timer_edit=0x7f040032;
         public static final int left=0x7f040001;
-        public static final int ll_pager=0x7f040014;
-        public static final int lv_content=0x7f04001c;
-        public static final int lv_tag=0x7f04001b;
+        public static final int leftmenu_setting_about=0x7f040042;
+        public static final int leftmenu_setting_account=0x7f04003e;
+        public static final int leftmenu_setting_backup=0x7f04003f;
+        public static final int leftmenu_setting_backupfromService=0x7f040040;
+        public static final int leftmenu_setting_deletedata=0x7f040041;
+        public static final int leftmenu_setting_exit=0x7f040043;
+        public static final int leftmenu_setting_history=0x7f04003d;
+        public static final int leftmenu_setting_locate=0x7f04003b;
+        public static final int leftmenu_setting_password=0x7f04003c;
+        public static final int ll_login_password=0x7f040027;
+        public static final int ll_login_singup=0x7f04002c;
+        public static final int ll_login_user=0x7f040025;
+        public static final int ll_pager=0x7f04002f;
+        public static final int lv_content=0x7f040039;
+        public static final int lv_tag=0x7f040038;
         public static final int margin=0x7f040004;
         public static final int none=0x7f040005;
         public static final int right=0x7f040002;
         public static final int selected_view=0x7f040000;
-        public static final int slidingmenumain=0x7f040030;
+        public static final int slidingmenumain=0x7f040058;
         public static final int textView1=0x7f040008;
         public static final int textView2=0x7f04000a;
-        public static final int tv_cen=0x7f040034;
-        public static final int tv_content_content=0x7f04002c;
-        public static final int tv_content_time=0x7f04002b;
-        public static final int tv_content_title=0x7f04002a;
-        public static final int tv_hour=0x7f040035;
-        public static final int tv_leftmenu_about=0x7f040028;
-        public static final int tv_leftmenu_exit=0x7f040029;
-        public static final int tv_leftmenu_help=0x7f040026;
-        public static final int tv_leftmenu_home=0x7f040025;
-        public static final int tv_leftmenu_setting=0x7f040027;
-        public static final int tv_login_logout=0x7f040024;
-        public static final int tv_sce=0x7f040036;
-        public static final int tv_tagName=0x7f04002e;
-        public static final int tv_test=0x7f04001e;
-        public static final int tv_timer_content=0x7f040038;
-        public static final int tv_timer_pagerTitle=0x7f040012;
-        public static final int tv_timer_title=0x7f040037;
-        public static final int tv_title=0x7f040016;
-        public static final int vp_home=0x7f040022;
-        public static final int vp_timer=0x7f040015;
+        public static final int tv_cen=0x7f04005d;
+        public static final int tv_content_content=0x7f040054;
+        public static final int tv_content_time=0x7f040053;
+        public static final int tv_content_title=0x7f040052;
+        public static final int tv_detial_content=0x7f040015;
+        public static final int tv_detial_date=0x7f040017;
+        public static final int tv_detial_istwenty=0x7f040019;
+        public static final int tv_detial_pagerTitle=0x7f040012;
+        public static final int tv_detial_tag=0x7f040018;
+        public static final int tv_detial_time=0x7f040016;
+        public static final int tv_detial_title=0x7f040014;
+        public static final int tv_edit_content=0x7f04001d;
+        public static final int tv_edit_date=0x7f04001f;
+        public static final int tv_edit_pagerTitle=0x7f04001b;
+        public static final int tv_edit_tag=0x7f040020;
+        public static final int tv_edit_time=0x7f04001e;
+        public static final int tv_edit_title=0x7f04001c;
+        public static final int tv_hour=0x7f04005c;
+        public static final int tv_item_help_1=0x7f040062;
+        public static final int tv_item_help_2=0x7f040063;
+        public static final int tv_leftmenu_exit=0x7f04004d;
+        public static final int tv_leftmenu_help=0x7f04004b;
+        public static final int tv_leftmenu_home=0x7f04004a;
+        public static final int tv_leftmenu_setting=0x7f04004c;
+        public static final int tv_login_logout=0x7f040049;
+        public static final int tv_login_or=0x7f04002a;
+        public static final int tv_login_singup=0x7f04002e;
+        public static final int tv_login_singup_text=0x7f04002d;
+        public static final int tv_right_delete=0x7f040050;
+        public static final int tv_right_help=0x7f040051;
+        public static final int tv_right_setting=0x7f04004f;
+        public static final int tv_right_share=0x7f04004e;
+        public static final int tv_sce=0x7f04005e;
+        public static final int tv_tagName=0x7f040056;
+        public static final int tv_timer_content=0x7f040060;
+        public static final int tv_timer_pagerTitle=0x7f040011;
+        public static final int tv_timer_title=0x7f04005f;
+        public static final int tv_title=0x7f040031;
+        public static final int vp_home=0x7f040047;
+        public static final int vp_timer=0x7f040030;
     }
     public static final class layout {
         public static final int activity_add_data=0x7f030000;
-        public static final int activity_home=0x7f030001;
-        public static final int activity_home_behind=0x7f030002;
-        public static final int activity_splash=0x7f030003;
-        public static final int activity_timer=0x7f030004;
-        public static final int content_home_pager=0x7f030005;
-        public static final int content_setting_pager=0x7f030006;
-        public static final int dialog_add_tag=0x7f030007;
-        public static final int fragment_content=0x7f030008;
-        public static final int fragment_lfet_menu=0x7f030009;
-        public static final int listview_content_item=0x7f03000a;
-        public static final int listview_tag_add=0x7f03000b;
-        public static final int listview_tag_item=0x7f03000c;
-        public static final int slidingmenumain=0x7f03000d;
-        public static final int timer_countdown_pager=0x7f03000e;
-        public static final int timer_pagerdetail=0x7f03000f;
+        public static final int activity_detail=0x7f030001;
+        public static final int activity_edit=0x7f030002;
+        public static final int activity_home=0x7f030003;
+        public static final int activity_home_behind=0x7f030004;
+        public static final int activity_loginactivity=0x7f030005;
+        public static final int activity_splash=0x7f030006;
+        public static final int activity_timer=0x7f030007;
+        public static final int content_about_pager=0x7f030008;
+        public static final int content_help_pager=0x7f030009;
+        public static final int content_home_pager=0x7f03000a;
+        public static final int content_setting_pager=0x7f03000b;
+        public static final int dialog_add_tag=0x7f03000c;
+        public static final int fragment_content=0x7f03000d;
+        public static final int fragment_lfet_menu=0x7f03000e;
+        public static final int fragment_timer_right_menu=0x7f03000f;
+        public static final int listview_content_item=0x7f030010;
+        public static final int listview_tag_add=0x7f030011;
+        public static final int listview_tag_item=0x7f030012;
+        public static final int slidingmenumain=0x7f030013;
+        public static final int timer_countdown_pager=0x7f030014;
+        public static final int timer_pagerdetail=0x7f030015;
+        public static final int view_help_item=0x7f030016;
     }
     public static final class menu {
-        public static final int main=0x7f080000;
-        public static final int splash=0x7f080001;
+        public static final int main=0x7f090000;
+        public static final int splash=0x7f090001;
     }
     public static final class string {
-        public static final int action_settings=0x7f060001;
-        public static final int app_name=0x7f060000;
-        public static final int hello_world=0x7f060002;
+        public static final int action_settings=0x7f070001;
+        public static final int app_name=0x7f070000;
+        public static final int hello_world=0x7f070002;
     }
     public static final class style {
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
 
+
     
 
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
+
 
         
 
@@ -274,15 +385,74 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070001;
-        public static final int CustomDialog=0x7f070003;
-        public static final int LeftMenuItemStyle=0x7f070002;
+        public static final int AppTheme=0x7f080001;
+        public static final int CustomDialog=0x7f080003;
+        public static final int LeftMenuItemStyle=0x7f080002;
     }
     public static final class styleable {
+        /** Attributes that can be used with a ItemOfHelpPager.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #ItemOfHelpPager_btnText com.itlowly.twenty:btnText}</code></td><td></td></tr>
+           <tr><td><code>{@link #ItemOfHelpPager_helpText1 com.itlowly.twenty:helpText1}</code></td><td></td></tr>
+           <tr><td><code>{@link #ItemOfHelpPager_helpText2 com.itlowly.twenty:helpText2}</code></td><td></td></tr>
+           </table>
+           @see #ItemOfHelpPager_btnText
+           @see #ItemOfHelpPager_helpText1
+           @see #ItemOfHelpPager_helpText2
+         */
+        public static final int[] ItemOfHelpPager = {
+            0x7f01000e, 0x7f01000f, 0x7f010010
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.itlowly.twenty.R.attr#btnText}
+          attribute's value can be found in the {@link #ItemOfHelpPager} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.itlowly.twenty:btnText
+        */
+        public static final int ItemOfHelpPager_btnText = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.itlowly.twenty.R.attr#helpText1}
+          attribute's value can be found in the {@link #ItemOfHelpPager} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.itlowly.twenty:helpText1
+        */
+        public static final int ItemOfHelpPager_helpText1 = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.itlowly.twenty.R.attr#helpText2}
+          attribute's value can be found in the {@link #ItemOfHelpPager} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.itlowly.twenty:helpText2
+        */
+        public static final int ItemOfHelpPager_helpText2 = 2;
         /** Attributes that can be used with a SlidingMenu.
            <p>Includes the following attributes:</p>
            <table>

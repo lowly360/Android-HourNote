@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ItemOfHelpPager">  
+        <attr  
+            name="btnText"  
+            format="string" />  
+        <attr  
+            name="helpText1"  
+            format="string" />  
+        <attr  
+            name="helpText2"   
+            format="string"  
+        />  
+    </declare-styleable>  
+    
+</resources>

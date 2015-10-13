@@ -1,50 +1,36 @@
 package com.itlowly.twenty.base.impl;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import android.R.string;
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.os.SystemClock;
-import android.text.Editable;
+import android.location.Location;
 import android.text.TextUtils;
-import android.view.Display;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
-import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.itlowly.twenty.R;
 import com.itlowly.twenty.activity.AddDataActivity;
+import com.itlowly.twenty.activity.DetailActivity;
 import com.itlowly.twenty.activity.HomeActivity;
 import com.itlowly.twenty.activity.TimerActivity;
 import com.itlowly.twenty.base.ContentBasePager;
@@ -125,6 +111,8 @@ public class HomePager extends ContentBasePager implements OnClickListener {
 			if (tagApater == null) {
 				tagApater = new MyTagApater();
 				lv_tag.setAdapter(tagApater);
+				lv_tag.addHeaderView(View.inflate(mActivity,
+						R.layout.listview_tag_add, null));
 			}
 
 			tagApater.notifyDataSetChanged();
@@ -138,16 +126,20 @@ public class HomePager extends ContentBasePager implements OnClickListener {
 		// 读取默认的标签页
 		mDataList = noteDB.findAllInType(mCurrenerTag);
 
+		// 获取当前时间，并转化为string进行存储
+		Date date = new Date();
+		long dateLong = date.getTime();
+
 		if (mDataList.size() == 0) {
-			noteDB.addData("背六级单词", "坚持每天背30~40个单词", "2015-9-1", "72000000",
-					"学习");
-			noteDB.addData("了解Git", "有空xxxxxxxxxx????", "2014-8-3", "72000000",
-					"学习");
+			noteDB.addData("背六级单词", "坚持每天背30~40个单词", String.valueOf(dateLong),
+					"72000000", "学习", "1");
+			noteDB.addData("了解Git", "有空xxxxxxxxxx????",
+					String.valueOf(dateLong), "72000000", "学习", "1");
 			mDataList = noteDB.findAllInType(mCurrenerTag);
 		}
 
-		noteDB.addData("备忘test", "XXXXXXXXXXXXXXXXXXXXXXXX", "2015-9-1",
-				"72000000", "备忘");
+		noteDB.addData("备忘test", "XXXXXXXXXXXXXXXXXXXXXXXX",
+				String.valueOf(dateLong), "0", "备忘", "0");
 
 		mDataList = noteDB.findAllInType(mCurrenerTag);
 
@@ -166,16 +158,18 @@ public class HomePager extends ContentBasePager implements OnClickListener {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				if (position != mTagList.size()) { // 不是点击了添加标签
+				if (position - 1 != mTagList.size() && position != 0) { // 不是点击了添加标签
 					ImageView iView = (ImageView) view
 							.findViewById(R.id.iv_tag_delete);
 					iView.setVisibility(View.GONE);
 
-					mCurrenerTag = mTagList.get(position);
+					mCurrenerTag = mTagList.get(position - 1);
+
+					tagApater.notifyDataSetChanged();
 
 					setCurrenerContent(mCurrenerTag);
 
-				} else if (position == mTagList.size()) {
+				} else if (position == 0) {
 					// 跳出添加标签提示框
 					showDialogToAddTag();
 				}
@@ -188,7 +182,7 @@ public class HomePager extends ContentBasePager implements OnClickListener {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				if (position < mTagList.size()) {
+				if (position - 1 < mTagList.size() && position != 0) {
 					ImageView iView = (ImageView) view
 							.findViewById(R.id.iv_tag_delete);
 					iView.setVisibility(View.VISIBLE);
@@ -209,17 +203,31 @@ public class HomePager extends ContentBasePager implements OnClickListener {
 				DataBean object = (DataBean) lv_content
 						.getItemAtPosition(position);
 
-				Intent intent = new Intent();
-				intent.setClass(mActivity, TimerActivity.class);
+				if (object.getIsTwenty().equals("1")) { // 判断是否为20h倒计时备忘
+					// 是则跳转到倒计时详情页面
+					Intent intent = new Intent();
+					intent.setClass(mActivity, TimerActivity.class);
 
-				intent.putExtra("title", object.getTitle());
-				intent.putExtra("type", object.getType());
+					intent.putExtra("title", object.getTitle());
+					intent.putExtra("type", object.getType());
 
-				mActivity.startActivity(intent);
+					mActivity.startActivity(intent);
+				} else {
+					// 跳转到详情页面
+					Intent intent = new Intent();
+					intent.setClass(mActivity, DetailActivity.class);
+
+					intent.putExtra("title", object.getTitle());
+					intent.putExtra("type", object.getType());
+
+					mActivity.startActivity(intent);
+				}
+
 			}
 
 		});
 
+		// 数据listview长按事件处理
 		lv_content.setOnItemLongClickListener(new OnItemLongClickListener() {
 
 			@Override
@@ -260,8 +268,10 @@ public class HomePager extends ContentBasePager implements OnClickListener {
 				switch (item.getItemId()) {
 
 				case R.id.detail: // 详情
+
+					// 跳转到详情页面
 					Intent intent = new Intent();
-					intent.setClass(mActivity, TimerActivity.class);
+					intent.setClass(mActivity, DetailActivity.class);
 
 					intent.putExtra("title", object.getTitle());
 					intent.putExtra("type", object.getType());
@@ -421,7 +431,7 @@ public class HomePager extends ContentBasePager implements OnClickListener {
 		@Override
 		public int getCount() {
 
-			return mTagList.size() + 1;
+			return mTagList.size();
 		}
 
 		@Override
@@ -453,6 +463,14 @@ public class HomePager extends ContentBasePager implements OnClickListener {
 
 				tagName.setText(tagnameString);
 
+				if (mTagList.get(position).equals(mCurrenerTag)) {
+					view.setBackgroundColor(mActivity.getResources().getColor(
+							R.color.tag_chosen));
+					view.setAlpha(0.8f);
+				} else {
+					view.setBackground(null);
+				}
+
 				iv_delete.setOnClickListener(new OnClickListener() { // 删除事件
 							@Override
 							public void onClick(View v) {
@@ -463,16 +481,15 @@ public class HomePager extends ContentBasePager implements OnClickListener {
 										Toast.LENGTH_SHORT).show();
 								// 删除此标签的数据 暂不处理,先留在数据库中
 								mTagList.remove(getItem(position));
-
 								tagApater.notifyDataSetChanged();
-
 							}
 						});
 
 				return view;
 
 			} else {
-				view = View.inflate(mActivity, R.layout.listview_tag_add, null);
+				// view = View.inflate(mActivity, R.layout.listview_tag_add,
+				// null);
 
 				return view;
 			}
@@ -519,14 +536,23 @@ public class HomePager extends ContentBasePager implements OnClickListener {
 			DataBean item = getItem(position);
 
 			holder.tv_title.setText(item.getTitle());
+			if (item.getIsTwenty().equals("0")) { // 判断是否为20H计划笔记
+				holder.tv_title.setTextColor(mActivity.getResources().getColor(
+						R.color.title_not));
 
-			String time = item.getTime();
+				holder.tv_time.setText("无剩余时间");
+			} else {
+				holder.tv_title.setTextColor(mActivity.getResources().getColor(
+						R.color.title_yes));
 
-			long timeLong = Long.valueOf(time);
+				String time = item.getTime();
 
-			String timeString = LongToTime.getTime(timeLong);// 获取剩余时间
+				long timeLong = Long.valueOf(time);
 
-			holder.tv_time.setText(timeString);
+				String timeString = LongToTime.getTime(timeLong);// 获取剩余时间
+
+				holder.tv_time.setText(timeString);
+			}
 
 			holder.tv_content.setText(item.getContent());
 
@@ -547,4 +573,37 @@ public class HomePager extends ContentBasePager implements OnClickListener {
 	public void updateDate() {
 		setCurrenerContent(mCurrenerTag);
 	}
+
+	/**
+	 * 更新homepager中所有数据，用户与本地模式切换中使用
+	 */
+	public void UpdateAll(){
+		mTagList.clear();
+		mTagList = new ArrayList<String>();
+
+		LocalNoteDB newDB = new LocalNoteDB(context);
+		
+		mTagList = newDB.getAllTag();
+		tagApater.notifyDataSetChanged();
+
+		if (mTagList.size()!= 0) {
+			mCurrenerTag = mTagList.get(0);
+		}else {
+			//Toast.makeText(context, "更新失败！！1", 0).show();
+		}
+		
+
+		// 读取默认的标签页
+		mDataList.clear();
+		mDataList = newDB.findAllInType(mCurrenerTag);
+		
+		if (mDataList.size()!=0) {
+			contentAdapter.notifyDataSetChanged();
+		}else{
+			//Toast.makeText(context, "更新失败！！1", 0).show();
+		}
+		
+		//Toast.makeText(context, "更新成功！！1", 0).show();
+	}
+
 }

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.itlowly.twenty"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_margin="5dp" >
+
+        <ImageButton
+            android:id="@+id/btn_setting_menu"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/content_btn_leftmenu" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#2000" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#2000" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <com.itlowly.twenty.view.ItemOfHelpPager
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                app:btnText="   笔记类型"
+                app:helpText1="20H型笔记：倒计时20小时专心去做的笔记备忘，有倒计时功能"
+                app:helpText2="普通笔记：普通类型的笔记，备忘，便签类型" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="#2000" />
+
+            <com.itlowly.twenty.view.ItemOfHelpPager
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:btnText="   如何删除标签"
+                app:helpText1="长按标签，会显示删除图标"
+                app:helpText2="" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="#2000" />
+
+            <com.itlowly.twenty.view.ItemOfHelpPager
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:btnText="   如何删除笔记"
+                app:helpText1="长按您要删除的笔记，会弹出菜单，可以选择删除"
+                app:helpText2="" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="#2000" />
+
+            <com.itlowly.twenty.view.ItemOfHelpPager
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:btnText="   本地模式和用户模式"
+                app:helpText1="本地模式：指完全本地数据库存储，无需联网"
+                app:helpText2="用户模式：需要注册一个，数据可以同步到网上云存储，更加方便" />
+
+            <com.itlowly.twenty.view.ItemOfHelpPager
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                app:btnText="   本地密码有什么用？"
+                app:helpText1="本地密码：无论您开启本地模式还是用户模式，都可以设置本地密码，启动时需要输入本地密码，以此来保证您私隐"
+                app:helpText2="" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="#2000" />
+
+            <com.itlowly.twenty.view.ItemOfHelpPager
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:btnText="   备份与还原和同步数据有什么区别"
+                app:helpText1="备份与还原：用于本地模式数据备份或还原，把本地模式的数据备份到SD卡中"
+                app:helpText2="同步数据：用于用户模式数据备份或还原，把用户模式的数据备份到云端中" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

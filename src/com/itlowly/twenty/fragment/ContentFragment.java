@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import com.itlowly.twenty.R;
 import com.itlowly.twenty.base.ContentBasePager;
+import com.itlowly.twenty.base.impl.AboutPager;
+import com.itlowly.twenty.base.impl.HelpPager;
 import com.itlowly.twenty.base.impl.HomePager;
 import com.itlowly.twenty.base.impl.SettingPager;
 import com.itlowly.twenty.utils.DensityUtils;
@@ -25,6 +27,20 @@ public class ContentFragment extends BaseFragment {
 	private ArrayList<ContentBasePager> contentList;
 
 	private static HomePager mHomePager;
+
+	private SettingPager settingPager;
+
+	public SettingPager getSettingPager() {
+		return settingPager;
+	}
+
+	private HelpPager helpPager;
+
+	private AboutPager aboutPager;
+
+	public  HomePager getHomePager() {
+		return mHomePager;
+	}
 
 	@Override
 	public View initViews() {
@@ -55,14 +71,33 @@ public class ContentFragment extends BaseFragment {
 		}
 
 		mHomePager = new HomePager(mActivity);
-
+		settingPager = new SettingPager(mActivity);
+		helpPager = new HelpPager(mActivity);
+		aboutPager = new AboutPager(mActivity);
+		
 		contentList.add(mHomePager);
-		contentList.add(new SettingPager(mActivity));
+		contentList.add(helpPager);
+		contentList.add(settingPager);
+		contentList.add(aboutPager);
 
 		MyPagerAdatper myPagerAdatper = new MyPagerAdatper();
 
 		vpHome.setAdapter(myPagerAdatper);
 
+	}
+	
+	public void setCurrenerPager(int i){
+		if (i<contentList.size()) {
+			vpHome.setCurrentItem(i);
+		}
+	}
+	
+	/**
+	 * 获得当前的显示页面id
+	 * @return int
+	 */
+	public int getCurrenerPager(){
+		return vpHome.getCurrentItem();
 	}
 
 	class MyPagerAdatper extends PagerAdapter {

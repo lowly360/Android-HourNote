@@ -19,8 +19,10 @@
         android:id="@+id/tv_login_logout"
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="注销"
+        android:gravity="center"
+        android:layout_height="40dp"
+        android:drawableLeft="@drawable/group"
+        android:text="登录"
         android:textColor="@android:color/white"
         android:textSize="24sp"
         android:layout_below="@id/iv_leftmenu_icon"
@@ -30,7 +32,8 @@
     <TextView 
         android:id="@+id/tv_leftmenu_home"
         android:layout_marginTop="30dp"
-        android:text="主页面"
+        android:text="主页"
+        android:drawableLeft="@drawable/home"
         android:layout_below="@id/tv_login_logout"
         style="@style/LeftMenuItemStyle"
         />
@@ -38,6 +41,7 @@
     <TextView 
         android:id="@+id/tv_leftmenu_help"
         android:layout_marginTop="10dp"
+        android:drawableLeft="@drawable/help2"
         android:text="帮助"
         android:layout_below="@id/tv_leftmenu_home"
         style="@style/LeftMenuItemStyle"
@@ -47,15 +51,8 @@
         android:id="@+id/tv_leftmenu_setting"
         android:layout_marginTop="10dp"
         android:text="设置"
+        android:drawableLeft="@drawable/gear"
         android:layout_below="@id/tv_leftmenu_help"
-        style="@style/LeftMenuItemStyle"
-        />
-    
-    <TextView 
-        android:id="@+id/tv_leftmenu_about"
-        android:layout_marginTop="10dp"
-        android:text="关于"
-        android:layout_below="@id/tv_leftmenu_setting"
         style="@style/LeftMenuItemStyle"
         />
     
@@ -63,7 +60,8 @@
         android:id="@+id/tv_leftmenu_exit"
         android:layout_marginTop="10dp"
         android:text="退出"
-        android:layout_below="@id/tv_leftmenu_about"
+        android:drawableLeft="@drawable/power"
+        android:layout_below="@id/tv_leftmenu_setting"
         style="@style/LeftMenuItemStyle"
         />
 

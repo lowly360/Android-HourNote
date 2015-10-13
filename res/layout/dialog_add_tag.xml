@@ -23,11 +23,11 @@
 
     <ImageView
         android:id="@+id/iv_ok"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@id/et_tagname"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="40dp"
         android:layout_marginRight="5dp"
         android:src="@drawable/dialog_btn_ok" />
 
@@ -37,7 +37,7 @@
         android:layout_height="32dp"
         android:layout_alignLeft="@+id/et_tagname"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="45dp"
         android:layout_marginLeft="13dp"
         android:src="@drawable/dialog_btn_cancel" />
 
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="54dp"
+        android:layout_marginTop="58dp"
         android:singleLine="true"
         android:text="添加标签"
         android:textColor="#67997b"

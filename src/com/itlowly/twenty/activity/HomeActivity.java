@@ -1,5 +1,7 @@
 package com.itlowly.twenty.activity;
 
+import cn.bmob.v3.c.i;
+
 import com.itlowly.twenty.R;
 import com.itlowly.twenty.base.ContentBasePager;
 import com.itlowly.twenty.base.impl.HomePager;
@@ -9,10 +11,15 @@ import com.itlowly.twenty.utils.DensityUtils;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
+import android.R.integer;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.view.Window;
 import android.widget.Toast;
 
@@ -45,8 +52,8 @@ public class HomeActivity extends SlidingFragmentActivity {
 
 		slidingMenu.setMode(SlidingMenu.LEFT);
 
-		System.out.println("dp = "+DensityUtils.px2dp(this,240));
-		
+		System.out.println("dp = " + DensityUtils.px2dp(this, 240));
+
 		slidingMenu.setBehindOffset(220);// 设置预留屏幕宽度
 
 		initFragment();
@@ -84,10 +91,13 @@ public class HomeActivity extends SlidingFragmentActivity {
 	 * @return
 	 */
 	public Fragment getContentFragment() {
+
 		FragmentManager fm = getSupportFragmentManager();
 		Fragment fragment = fm.findFragmentByTag(FRAGMENT_CONTENT);
 		return fragment;
 	}
+
+	private int backDown = 0; 
 	
 	/**
 	 * 重新显示后，更新节目的数据
@@ -98,5 +108,74 @@ public class HomeActivity extends SlidingFragmentActivity {
 		HomePager pager = (HomePager) fragment.getPager();
 		pager.updateDate();
 		super.onRestart();
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		
+		
+		switch (keyCode) {
+		case KeyEvent.KEYCODE_BACK:
+			ContentFragment contentFragment = (ContentFragment) getContentFragment();
+			LeftMenuFragment leftMenuFragment = (LeftMenuFragment) getLeftMenuFragment();
+			switch (contentFragment.getCurrenerPager()) {
+			case 0:// 界面处于主页面
+				
+				
+				backDown++;
+				if (backDown!=2) {
+					Toast.makeText(this, "再按一次返回，退出应用", Toast.LENGTH_SHORT).show();
+				}else {
+					finish();
+				}
+				
+				if (backDown==1) {
+					new Thread(){
+						@Override
+						public void run() {
+							//2.5秒内没按下第二次back，则把backdown归零
+							SystemClock.sleep(2500);
+							
+							backDown = 0;
+						}
+					}.start();;
+				}
+				
+				return true;
+
+			case 1:// 界面处于帮助页面，按返回键应该返回到主界面
+				contentFragment.setCurrenerPager(0);
+				leftMenuFragment.setColor();
+				break;
+
+			case 2:// 界面处于设置页面，按返回键应该返回到主界面
+				contentFragment.setCurrenerPager(0);
+				leftMenuFragment.setColor();
+				break;
+
+			case 3: // 界面处于应用关于界面，按返回键应该返回到设置界面
+				contentFragment.setCurrenerPager(2);
+				break;
+
+			default:
+				break;
+			}
+
+			return true;
+
+		default:
+			break;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+	
+	@Override
+	protected void onDestroy() {
+		
+		SharedPreferences mPre = getSharedPreferences("config", Context.MODE_PRIVATE);
+
+		mPre.edit().putBoolean("SignIn",false).commit();
+		
+		super.onDestroy();
 	}
 }

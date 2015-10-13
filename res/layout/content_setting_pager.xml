@@ -2,24 +2,172 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" xmlns:app="http://schemas.android.com/apk/res/com.itlowly.twenty">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="42dp"
+        android:layout_margin="5dp" >
 
         <ImageButton
-            android:layout_width="69dp"
-            android:layout_height="69dp"
-            android:background="@drawable/content_btn_leftmenu" />
+            android:id="@+id/btn_setting_menu"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/content_btn_leftmenu" />
     </RelativeLayout>
 
-    <TextView 
-        android:id="@+id/tv_test"
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="setting"
-        />
+        android:layout_height="2px"
+        android:background="#2000" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#2000"
+        android:orientation="vertical" >
+        
+        <Button
+            android:id="@+id/leftmenu_setting_locate"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/selector_leftmenu_background"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:paddingRight="5dp"
+            android:text="   本地模式"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:background="#4000" />
+
+        <Button
+            android:id="@+id/leftmenu_setting_password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/selector_leftmenu_background"
+            android:clickable="true"
+            android:drawablePadding="10dp"
+            android:drawableRight="@drawable/lock_open"
+            android:gravity="center_vertical"
+            android:paddingRight="5dp"
+            android:text="   本地密码"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:background="#4000" />
+
+        <Button
+            android:id="@+id/leftmenu_setting_history"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/selector_leftmenu_background"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:text="   历史记录"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:background="#4000" />
+
+        <Button
+            android:id="@+id/leftmenu_setting_account"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/selector_leftmenu_background"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:paddingRight="5dp"
+            android:text="   账户与安全"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/leftmenu_setting_backup"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/selector_leftmenu_background"
+            android:gravity="center_vertical"
+            android:text="   备份与还原"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:background="#4000" />
+
+        <Button
+            android:id="@+id/leftmenu_setting_backupfromService"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/selector_leftmenu_background"
+            android:gravity="center_vertical"
+            android:text="   同步数据"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:background="#4000" />
+
+        <Button
+            android:id="@+id/leftmenu_setting_deletedata"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/selector_leftmenu_background"
+            android:gravity="center_vertical"
+            android:text="   删除数据"
+            android:textColor="#ddfb0000"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/leftmenu_setting_about"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/selector_leftmenu_background"
+            android:gravity="center_vertical"
+            android:text="   关于20H"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:background="#4000" />
+
+        <Button
+            android:id="@+id/leftmenu_setting_exit"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/selector_leftmenu_background"
+            android:gravity="center_vertical"
+            android:text="   注销"
+            android:textSize="16sp" />
+    </LinearLayout>
 
 </LinearLayout>

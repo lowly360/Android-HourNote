@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="title_not">#c4762c</color>
+    <color name="title_yes">#67997b</color>
+    <color name="tag_chosen">#1000</color>
+    <color name="green">#67997b</color>
+    <color name= "background">#1000</color>
+    <color name= "my_gray">#e5e5e5</color>
+  
+    
+
+</resources>

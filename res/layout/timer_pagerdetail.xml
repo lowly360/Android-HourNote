@@ -35,13 +35,14 @@
             android:text="hehehe"
             android:textColor="#67997b"
             android:textSize="28sp" />
-
+<!--  
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_gravity="bottom|right"
             android:layout_margin="1dp"
             android:src="@drawable/pencil" />
+            -->
     </FrameLayout>
 
     <TextView
@@ -73,12 +74,15 @@
             android:textColor="#686868"
             android:textSize="18sp" />
 
+        <!--  
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_gravity="bottom|right"
             android:layout_margin="1dp"
             android:src="@drawable/pencil" />
+            
+            -->
     </FrameLayout>
 
 </LinearLayout>

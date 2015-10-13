@@ -29,7 +29,7 @@
             android:layout_height="15dp"
             android:layout_toRightOf="@+id/tv_content_title"
             android:layout_alignBottom="@+id/tv_content_title"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="5dp"
             android:layout_alignParentRight="true"
             android:singleLine="true"
             android:text="剩余 19:35:40"

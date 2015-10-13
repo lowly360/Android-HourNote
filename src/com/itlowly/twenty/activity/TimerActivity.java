@@ -2,21 +2,6 @@ package com.itlowly.twenty.activity;
 
 import java.util.ArrayList;
 
-import com.itlowly.twenty.R;
-import com.itlowly.twenty.base.ContentBasePager;
-import com.itlowly.twenty.base.timerpager.CountDown;
-import com.itlowly.twenty.base.timerpager.DetailPager;
-import com.itlowly.twenty.bean.DataBean;
-import com.itlowly.twenty.db.LocalNoteDB;
-import com.itlowly.twenty.fragment.LeftMenuFragment;
-import com.itlowly.twenty.service.CountDownService;
-import com.itlowly.twenty.utils.DensityUtils;
-import com.itlowly.twenty.utils.ServiceUtils;
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
-import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
-
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
@@ -31,22 +16,39 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.itlowly.twenty.R;
+import com.itlowly.twenty.base.ContentBasePager;
+import com.itlowly.twenty.base.timerpager.CountDown;
+import com.itlowly.twenty.base.timerpager.DetailPager;
+import com.itlowly.twenty.bean.DataBean;
+import com.itlowly.twenty.db.LocalNoteDB;
+import com.itlowly.twenty.fragment.TimerRightMenuFragment;
+import com.itlowly.twenty.service.CountDownService;
+import com.itlowly.twenty.utils.DensityUtils;
+import com.itlowly.twenty.utils.ServiceUtils;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnClosedListener;
+import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
 /**
  * 倒计时的页面
  * 
  * @author lowly_pc
- *
+ * 
  */
-public class TimerActivity extends SlidingFragmentActivity implements OnClickListener {
+public class TimerActivity extends SlidingFragmentActivity implements
+		OnClickListener {
 
 	private LinearLayout ll_pager;
 	private TextView tv_title;
@@ -59,16 +61,23 @@ public class TimerActivity extends SlidingFragmentActivity implements OnClickLis
 	private ImageButton btn_menu;
 	private TextView tv_timer_pagerTitle;
 	private ViewPager vpPager;
-	
-	private final String FRAGMENT_LEFT_MENU = "fl_left_menu";
+
+	private final String FRAGMENT_RIGHT_MENU = "fl_right_menu";
 
 	private ArrayList<ContentBasePager> contentList;
 
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		initUi();
+
+		// 从intent中获取数据
+		Intent intent = getIntent();
+		title = intent.getStringExtra("title");
+		type = intent.getStringExtra("type");
+
+		db = new LocalNoteDB(this);
+
 		initData();
 		initListener();
 
@@ -76,32 +85,23 @@ public class TimerActivity extends SlidingFragmentActivity implements OnClickLis
 
 	private void initUi() {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		//setContentView(R.layout.activity_timer);
+
 		setContentView(R.layout.activity_timer);
 		setBehindContentView(R.layout.activity_home_behind);
-		//set(R.layout.activity_home_behind);
-		
+
 		slidingMenu = getSlidingMenu();
 		// 设置触摸模式,全屏触摸
-		
-		
+
 		slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
 
 		slidingMenu.setMode(SlidingMenu.RIGHT);
-		
-		//slidingMenu.setSecondaryShadowDrawable(resId);
-		slidingMenu.setBehindScrollScale(0.5f);
-		
-		
-		//slidingMenu.setSecondaryMenu(R.layout.activity_home_behind);
 
-		System.out.println("dp = "+DensityUtils.px2dp(this,240));
-		
-		slidingMenu.setBehindOffset(getWindowManager().getDefaultDisplay().getWidth() / 3);// 设置预留屏幕宽度
+		System.out.println("dp = " + DensityUtils.px2dp(this, 240));
+
+		slidingMenu.setBehindOffset((getWindowManager().getDefaultDisplay()
+				.getWidth() / 3) * 2);// 设置预留屏幕宽度
 
 		initFragment();
-		
-		
 
 		btn_back = (ImageButton) findViewById(R.id.btn_back);
 		tv_timer_pagerTitle = (TextView) findViewById(R.id.tv_timer_pagerTitle);
@@ -124,23 +124,13 @@ public class TimerActivity extends SlidingFragmentActivity implements OnClickLis
 		FragmentManager fm = getSupportFragmentManager();
 		FragmentTransaction transaction = fm.beginTransaction();
 
-		// 设置fragment标签,方便通过标签还获取依附在此Activity上的fragment
-		transaction.replace(R.id.fl_left_menu, new LeftMenuFragment(),
-				FRAGMENT_LEFT_MENU);
+		rightMenu = new TimerRightMenuFragment();
+		transaction.replace(R.id.fl_left_menu, rightMenu, FRAGMENT_RIGHT_MENU);
 		transaction.commit(); // 提交事务
 	}
 
 	private void initData() {
-		// 从intent中获取数据
-		Intent intent = getIntent();
-		title = intent.getStringExtra("title");
-		type = intent.getStringExtra("type");
 
-		// Toast.makeText(this, "-------"+title+"---"+type,
-		// Toast.LENGTH_SHORT).show();
-
-		// 根据标题，标签从数据库获取对应的数据封装到databean中
-		LocalNoteDB db = new LocalNoteDB(this);
 		dataBean = db.getDataBean(title, type);
 
 		tv_title.setText(dataBean.getTitle());
@@ -180,6 +170,18 @@ public class TimerActivity extends SlidingFragmentActivity implements OnClickLis
 		ib_timer_play.setOnClickListener(this);
 		ib_timer_pause.setOnClickListener(this);
 		ib_timer_quit.setOnClickListener(this);
+		iv_timer_edit.setOnClickListener(this);
+
+		// 设置侧边菜单关闭监听器，关闭的话，把图标详细内容隐藏
+		slidingMenu.setOnClosedListener(new OnClosedListener() {
+
+			@Override
+			public void onClosed() {
+				rightMenu.hideText();
+			}
+		});
+
+		btn_menu.setOnClickListener(this);
 
 		vpPager.setOnPageChangeListener(new OnPageChangeListener() {
 
@@ -195,6 +197,11 @@ public class TimerActivity extends SlidingFragmentActivity implements OnClickLis
 				ImageView view = (ImageView) ll_pager.getChildAt(arg0);
 				view.setBackgroundResource(R.drawable.shape_dot_currener);
 
+				if (arg0 == 1) {
+					tv_title.setText("详细内容");
+				} else {
+					tv_title.setText(dataBean.getTitle());
+				}
 			}
 
 			@Override
@@ -233,6 +240,7 @@ public class TimerActivity extends SlidingFragmentActivity implements OnClickLis
 	private boolean isStart = false; // 标志是否开始倒计时
 	private Intent service;
 	private SlidingMenu slidingMenu;
+	private TimerRightMenuFragment rightMenu;
 
 	/**
 	 * 实现点击处理事件
@@ -243,10 +251,34 @@ public class TimerActivity extends SlidingFragmentActivity implements OnClickLis
 		case R.id.btn_back: // 返回
 			if (isStart) {
 				showHintDailog();
-				
-			}else {
+
+			} else {
 				finish();
 			}
+
+			break;
+
+		case R.id.btn_menu:
+
+			slidingMenu.toggle();
+
+			break;
+
+		case R.id.iv_timer_edit:
+			
+			if (isStart) {
+				Toast.makeText(this, "正在倒计时不能修改内容", Toast.LENGTH_SHORT).show();
+				return ;
+			}
+
+			// 是则跳转到修改页面
+			Intent intent = new Intent();
+			intent.setClass(this, EditActivity.class);
+
+			intent.putExtra("title", title);
+			intent.putExtra("type", type);
+
+			startActivityForResult(intent, 10);
 
 			break;
 
@@ -503,7 +535,7 @@ public class TimerActivity extends SlidingFragmentActivity implements OnClickLis
 	 * Vpager的自定义适配器
 	 * 
 	 * @author lowly_pc
-	 *
+	 * 
 	 */
 	class MyPagerAdapter extends PagerAdapter {
 
@@ -530,4 +562,69 @@ public class TimerActivity extends SlidingFragmentActivity implements OnClickLis
 			container.removeView((View) object);
 		}
 	}
+
+	int startX = 0;
+	int endX = 0;
+	private LocalNoteDB db;
+
+	/**
+	 * 重写触摸事件来实现，向左划显示图标详细内容
+	 */
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+
+		if (slidingMenu.isMenuShowing()) { // 判断右菜单是否开启，否则不做任何操作
+
+			switch (event.getAction()) {
+			case MotionEvent.ACTION_DOWN:
+				startX = (int) event.getX();
+				break;
+			case MotionEvent.ACTION_MOVE:
+
+				endX = (int) event.getRawX();
+
+				if ((startX - endX) >= 150) { // 显示图标信息
+					rightMenu.setDefaultText();
+				}
+				return true;
+			}
+
+		} else {
+			return super.onTouchEvent(event);
+		}
+		return super.onTouchEvent(event);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		switch (resultCode) {
+		case 1: // 修改成功，有可能改变了题目，所以需要重新刷新界面数据
+			title = data.getStringExtra("title");
+			type = data.getStringExtra("type");
+			initData(); // 刷新界面ui数据
+
+			break;
+		case 2:
+
+			break;
+		case 3://由计时改成非计时类型，结束倒计时界面，启动详情界面
+			title = data.getStringExtra("title");
+			type = data.getStringExtra("type");
+			
+			Intent intent = new Intent();
+			intent.putExtra("title", title);
+			intent.putExtra("type", type);
+			
+			intent.setClass(this, DetailActivity.class);
+			startActivity(intent);
+			finish();
+			break;
+			
+		default:
+			break;
+		}
+
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+
 }

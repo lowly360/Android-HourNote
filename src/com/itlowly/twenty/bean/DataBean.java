@@ -6,19 +6,29 @@ public class DataBean {
 	private String data;
 	private String time;
 	private String type;
+	private String isTwenty;
 	
 	public DataBean(String title, String content, String data, String time,
-			String type) {
+			String type,String isTwenty) {
 		super();
 		this.title = title;
 		this.content = content;
 		this.data = data;
 		this.time = time;
 		this.type = type;
+		this.isTwenty = isTwenty;
 	}
 
 	public DataBean() {
 		
+	}
+
+	public String getIsTwenty() {
+		return isTwenty;
+	}
+
+	public void setIsTwenty(String isTwenty) {
+		this.isTwenty = isTwenty;
 	}
 
 	public final String getTitle() {
