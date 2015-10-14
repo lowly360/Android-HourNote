@@ -116,6 +116,7 @@ public class DetailActivity extends SlidingFragmentActivity {
 
 		tv_detial_tag.setText("标签:" + dataBean.getType());
 
+		
 		if (dataBean.getIsTwenty().equals("1")) {
 			tv_detial_istwenty.setText("20H计时任务");
 			String time = dataBean.getTime();

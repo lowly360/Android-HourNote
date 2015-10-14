@@ -41,12 +41,17 @@ public class AddDataActivity extends Activity implements OnClickListener {
 	
 	
 	private CheckBox cb_add_isTwenty;
+	private ArrayList<String> allTag;
 	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		
+		LocalNoteDB db = new LocalNoteDB(this);
+
+		allTag = db.getAllTag();
 		initView();
 	}
 
@@ -72,6 +77,10 @@ public class AddDataActivity extends Activity implements OnClickListener {
 		ib_add_cancel = (ImageButton) findViewById(R.id.ib_add_cancel);
 		
 		mCurrenerTag = getIntent().getStringExtra("mCurrenerTag");
+		
+		if (mCurrenerTag == null) {
+			mCurrenerTag = allTag.get(0);
+		}
 		
 		btn_setTag.setText("设置标签：当前为["+mCurrenerTag+"]");
 
@@ -153,9 +162,7 @@ public class AddDataActivity extends Activity implements OnClickListener {
 	 * 显示设置标签的对话框
 	 */
 	private void choceTag() {
-		LocalNoteDB db = new LocalNoteDB(this);
-
-		ArrayList<String> allTag = db.getAllTag(); //获取数据库中的标签列表
+		
 
 		final String[] tagList = new String[allTag.size()]; 
 		allTag.toArray(tagList); //转化为string[]

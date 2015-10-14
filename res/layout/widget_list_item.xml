@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_widget_list_layout"
+    android:layout_width="match_parent"
+    android:layout_height="38dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginBottom="5dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+   >
+
+    <TextView
+        android:id="@+id/tv_widget_list_item_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:layout_weight="4"
+        android:minWidth="4dp"
+        android:ems="6"
+        android:singleLine="true"
+        android:text="六级dfdfdfdfdfdfd"
+        android:textColor="@color/title_yes"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/tv_widget_list_item_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_weight="1"
+        android:ems="6"
+        android:singleLine="true"
+        android:text="六级dfadsfffdddddddddddddddddddd"
+        android:textSize="22sp" />
+
+    <ImageButton
+        android:id="@+id/ib_widget_list_item_play"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:minWidth="30dp"
+        android:src="@drawable/arrow"
+        android:background="@null"
+        android:layout_gravity="center"
+        android:layout_marginBottom="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="2dp"
+        android:singleLine="true" />
+
+</LinearLayout>

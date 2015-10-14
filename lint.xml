@@ -2,5 +2,6 @@
 <lint>
     <issue id="NewApi">
         <ignore path="src/com/itlowly/twenty/base/impl/HomePager.java" />
+        <ignore path="src/com/itlowly/twenty/receiver/MyWidgetProvider.java" />
     </issue>
 </lint>
