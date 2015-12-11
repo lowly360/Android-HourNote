@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:padding="5dp"
-        android:text="TwentyHours v1.0"
+        android:text="HourNote v1.0"
         android:textSize="14sp" />
 
     <LinearLayout

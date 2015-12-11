@@ -8,8 +8,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.SystemClock;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
@@ -26,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import cn.bmob.v3.c.i;
 
 import com.itlowly.twenty.R;
 import com.itlowly.twenty.base.ContentBasePager;
@@ -70,7 +73,7 @@ public class TimerActivity extends SlidingFragmentActivity implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		initUi();
-
+		mPre = getSharedPreferences("config", Context.MODE_PRIVATE);
 		// 从intent中获取数据
 		Intent intent = getIntent();
 		title = intent.getStringExtra("title");
@@ -120,11 +123,15 @@ public class TimerActivity extends SlidingFragmentActivity implements
 
 	}
 
+	/**
+	 * 初始化右边侧边栏fragment
+	 */
 	private void initFragment() {
 		FragmentManager fm = getSupportFragmentManager();
 		FragmentTransaction transaction = fm.beginTransaction();
 
 		rightMenu = new TimerRightMenuFragment();
+
 		transaction.replace(R.id.fl_left_menu, rightMenu, FRAGMENT_RIGHT_MENU);
 		transaction.commit(); // 提交事务
 	}
@@ -144,6 +151,9 @@ public class TimerActivity extends SlidingFragmentActivity implements
 		detailPager = new DetailPager(this, title, type);
 
 		contentList.add(detailPager);
+
+		rightMenu.setTitle(title);
+		rightMenu.setType(type);
 
 		for (int i = 0; i < contentList.size(); i++) {
 			ImageView dot = new ImageView(this);
@@ -206,7 +216,6 @@ public class TimerActivity extends SlidingFragmentActivity implements
 
 			@Override
 			public void onPageScrolled(int arg0, float arg1, int arg2) {
-				// TODO Auto-generated method stub
 
 			}
 
@@ -265,10 +274,10 @@ public class TimerActivity extends SlidingFragmentActivity implements
 			break;
 
 		case R.id.iv_timer_edit:
-			
+
 			if (isStart) {
 				Toast.makeText(this, "正在倒计时不能修改内容", Toast.LENGTH_SHORT).show();
-				return ;
+				return;
 			}
 
 			// 是则跳转到修改页面
@@ -325,11 +334,54 @@ public class TimerActivity extends SlidingFragmentActivity implements
 			break;
 		case R.id.ib_timer_quit:
 
+			showQuitDialog();
+
 			break;
 
 		default:
 			break;
 		}
+	}
+
+	private void showQuitDialog() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+		builder.setTitle("提示");
+		builder.setMessage("是否放弃这一计划");
+		builder.setPositiveButton("取消", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+
+				return;
+			}
+		});
+
+		builder.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// 放弃该计划，自动把本计划类型改为备忘类型
+				isStart = false;
+
+				if (countDown != null) {
+					countDown.stopCount();
+				}
+
+				dataBean.setIsTwenty("0");
+
+				db.updateData(title, type, dataBean);
+
+				Intent intent = new Intent();
+				intent.putExtra("title", title);
+				intent.putExtra("type", type);
+				intent.setClass(TimerActivity.this, DetailActivity.class);
+				startActivity(intent);
+
+				finish();
+			}
+		});
+		builder.show();
 	}
 
 	@Override
@@ -341,7 +393,6 @@ public class TimerActivity extends SlidingFragmentActivity implements
 	@Override
 	protected void onStop() {
 		if (isStart) { // activity切换至后台，启动后台服务倒计时，防止被系统内存不足的时候自动销毁activity
-
 			/**
 			 * 先停止本地activity的倒计时
 			 */
@@ -351,7 +402,7 @@ public class TimerActivity extends SlidingFragmentActivity implements
 				countDown.stopCount();
 
 				LocalNoteDB db2 = new LocalNoteDB(TimerActivity.this);
-
+				// 先保存时间
 				boolean updateDate = db2.updateDate(dataBean,
 						String.valueOf(countDown.getTime() * 1000));
 				if (updateDate) {
@@ -361,21 +412,27 @@ public class TimerActivity extends SlidingFragmentActivity implements
 				}
 			}
 
+			mPre.edit().putLong("startTime", System.currentTimeMillis())
+					.commit();
+
+			System.out.println("startTime 为：" + mPre.getLong("startTime", 0)
+					+ "开始时间: " + String.valueOf(countDown.getTime() * 1000));
+
 			// 启动后台倒计时的服务
-			System.out.println("后台启动服务中ing~~~");
-
-			LocalNoteDB db = new LocalNoteDB(TimerActivity.this);
-
-			dataBean = db.getDataBean(title, type); // 刷新时间数据
-
-			service = new Intent(TimerActivity.this, CountDownService.class);
-			System.out.println("准备开启服务：时间为" + dataBean.getTime());
-
-			service.putExtra("time", dataBean.getTime());
-			// 开启服务
-			startService(service);
-			// 绑定服务
-			bindService(service, connection, Context.BIND_AUTO_CREATE);
+			// System.out.println("后台启动服务中ing~~~");
+			//
+			// LocalNoteDB db = new LocalNoteDB(TimerActivity.this);
+			//
+			// dataBean = db.getDataBean(title, type); // 刷新时间数据
+			//
+			// service = new Intent(TimerActivity.this, CountDownService.class);
+			// System.out.println("准备开启服务：时间为" + dataBean.getTime());
+			//
+			// service.putExtra("time", dataBean.getTime());
+			// // 开启服务
+			// startService(service);
+			// // 绑定服务
+			// bindService(service, connection, Context.BIND_AUTO_CREATE);
 		}
 
 		super.onStop();
@@ -386,42 +443,42 @@ public class TimerActivity extends SlidingFragmentActivity implements
 		System.out.println("TimerActivity:onRestart");
 
 		// 检测倒计时服务是否在运行，如果在运行，又未绑定，则重新绑定service
-		if (ServiceUtils.isServiceRunning(this,
-				"com.itlowly.twenty.service.CountDownService")) {
-			isStart = true;
+		// if (ServiceUtils.isServiceRunning(this,
+		// "com.itlowly.twenty.service.CountDownService")) {
+		// isStart = true;
+		//
+		// if (myservice != null) {
+		// System.out.println("TimerActivity:onRestart isStart:"
+		// + "  myservice" + myservice.toString());
+		// } else {
+		// System.out.println("重新绑定服务");
+		//
+		// LocalNoteDB db = new LocalNoteDB(TimerActivity.this);
+		//
+		// dataBean = db.getDataBean(title, type); // 刷新时间数据
+		//
+		// System.out.println("dataBean" + dataBean.toString() + title
+		// + type);
+		//
+		// service = new Intent(TimerActivity.this, CountDownService.class);
+		//
+		// service.putExtra("time", dataBean.getTime());
+		//
+		// // 开启服务
+		// startService(service);
+		// // 绑定服务
+		// bindService(service, connection, Context.BIND_AUTO_CREATE);
+		// }
+		// } else {
+		// System.out.println("服务未启动！！");
+		// }
 
-			if (myservice != null) {
-				System.out.println("TimerActivity:onRestart isStart:" + isStart
-						+ "  myservice" + myservice.toString());
-			} else {
-				System.out.println("重新绑定服务");
-
-				LocalNoteDB db = new LocalNoteDB(TimerActivity.this);
-
-				dataBean = db.getDataBean(title, type); // 刷新时间数据
-
-				System.out.println("dataBean" + dataBean.toString() + title
-						+ type);
-
-				service = new Intent(TimerActivity.this, CountDownService.class);
-
-				service.putExtra("time", dataBean.getTime());
-
-				// 开启服务
-				startService(service);
-				// 绑定服务
-				bindService(service, connection, Context.BIND_AUTO_CREATE);
-			}
-		} else {
-			System.out.println("服务未启动！！");
-		}
-
-		if (isStart && myservice != null) {
+		if (isStart) {
 
 			System.out.println("进入后台服务了");
-			myservice.stopCount();
+			// myservice.stopCount();
 
-			unbindService(connection);
+			// unbindService(connection);
 
 			if (service != null) {
 				stopService(service);
@@ -431,7 +488,23 @@ public class TimerActivity extends SlidingFragmentActivity implements
 			/**
 			 * 重新开始actvity的本地倒计时
 			 */
-			long time = myservice.getTime();
+
+			long startTime = mPre.getLong("startTime",
+					System.currentTimeMillis());
+
+			long endTime = System.currentTimeMillis();
+
+			System.out.println("startTime" + startTime + "endTime" + endTime);
+
+			mPre.edit().putLong("startTime", 0).commit();
+			long backGroundTime = endTime - startTime;
+			System.out.println("锁屏共计时" + backGroundTime);
+
+			// long time = myservice.getTime();
+
+			dataBean = db.getDataBean(title, type);
+
+			long time = Long.valueOf(dataBean.getTime()) - backGroundTime;
 
 			if (countDown != null) {
 				System.out.println("重新开始actvity的本地倒计时");
@@ -462,6 +535,7 @@ public class TimerActivity extends SlidingFragmentActivity implements
 	 */
 	@Override
 	protected void onDestroy() {
+
 		System.out.println("TimerActivity:onDestroy");
 		if (isStart) {
 			if (countDown != null) {
@@ -480,6 +554,7 @@ public class TimerActivity extends SlidingFragmentActivity implements
 		}
 
 		super.onDestroy();
+
 	}
 
 	@Override
@@ -525,6 +600,10 @@ public class TimerActivity extends SlidingFragmentActivity implements
 				if (countDown != null) {
 					countDown.stopCount();
 				}
+
+				dataBean.setTime(String.valueOf(countDown.getTime() * 1000));
+				db.updateData(title, type, dataBean);
+
 				finish();
 			}
 		});
@@ -566,6 +645,7 @@ public class TimerActivity extends SlidingFragmentActivity implements
 	int startX = 0;
 	int endX = 0;
 	private LocalNoteDB db;
+	private SharedPreferences mPre;
 
 	/**
 	 * 重写触摸事件来实现，向左划显示图标详细内容
@@ -607,19 +687,19 @@ public class TimerActivity extends SlidingFragmentActivity implements
 		case 2:
 
 			break;
-		case 3://由计时改成非计时类型，结束倒计时界面，启动详情界面
+		case 3:// 由计时改成非计时类型，结束倒计时界面，启动详情界面
 			title = data.getStringExtra("title");
 			type = data.getStringExtra("type");
-			
+
 			Intent intent = new Intent();
 			intent.putExtra("title", title);
 			intent.putExtra("type", type);
-			
+
 			intent.setClass(this, DetailActivity.class);
 			startActivity(intent);
 			finish();
 			break;
-			
+
 		default:
 			break;
 		}

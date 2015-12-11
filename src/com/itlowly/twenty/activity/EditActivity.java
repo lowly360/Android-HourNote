@@ -155,7 +155,7 @@ public class EditActivity extends Activity implements OnClickListener {
 					// 判断修改什么而作出对应的处理
 				if (!mCurrenerTag.equals(dataBean.getType())) { // 修改了tag类型，需要删除原来的，并加到新标签表中
 
-					db.deleteData(title, type);
+					db.deleteData(title, type,1);
 
 					String newtime = dataBean.getTime() ;
 					
@@ -171,7 +171,7 @@ public class EditActivity extends Activity implements OnClickListener {
 						}
 					}
 					db.addData(editTitle, editContent, String.valueOf(time),
-							newtime, mCurrenerTag, is);
+							newtime, mCurrenerTag, is,1);
 					
 					Toast.makeText(this, "修改成功", 0).show();
 					finish();

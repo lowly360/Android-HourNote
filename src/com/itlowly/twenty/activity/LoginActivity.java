@@ -105,7 +105,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 		tv_login_or = (TextView) findViewById(R.id.tv_login_or);
 		tv_login_singup_text = (TextView) findViewById(R.id.tv_login_singup_text);
 
-		String name = mPre.getString("LocateUser", "");
+		String name = mPre.getString("LocateUser", "LocalNote");
 		if (name.equals("LocalNote")) {
 			et_login_username.setText("");
 		} else {

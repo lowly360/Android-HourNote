@@ -61,7 +61,7 @@ public class CountDownService extends Service {
 					}
 				}
 			};
-			thread .start();
+			thread.start();
 		}		
 		
 	}

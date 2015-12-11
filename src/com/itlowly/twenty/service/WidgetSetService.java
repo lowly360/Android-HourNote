@@ -117,7 +117,7 @@ public class WidgetSetService extends RemoteViewsService {
 		public RemoteViews getViewAt(int position) {
 			if (position < 0 || position >= mList.size())
 				return null;
-			DataBean data = mList.get(position);
+			DataBean data = mList.get(mList.size()-1-position); //
 			RemoteViews rv = new RemoteViews(mContext.getPackageName(),
 					R.layout.widget_list_item);
 
@@ -143,7 +143,6 @@ public class WidgetSetService extends RemoteViewsService {
 					data.getContent());
 			rv.setOnClickFillInIntent(R.id.tv_widget_list_item_content, intent);
 			rv.setOnClickFillInIntent(R.id.tv_widget_list_item_title, intent);
-			rv.setOnClickFillInIntent(R.id.ib_widget_list_item_play, intent);
 			return rv;
 		}
 

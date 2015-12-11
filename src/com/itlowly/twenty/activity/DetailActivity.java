@@ -105,6 +105,7 @@ public class DetailActivity extends SlidingFragmentActivity {
 		FragmentTransaction transaction = fm.beginTransaction();
 
 		rightMenu = new TimerRightMenuFragment();
+		
 		transaction.replace(R.id.fl_left_menu, rightMenu, FRAGMENT_RIGHT_MENU);
 		transaction.commit(); // 提交事务
 	}
@@ -115,6 +116,9 @@ public class DetailActivity extends SlidingFragmentActivity {
 		tv_detial_content.setText(dataBean.getContent());
 
 		tv_detial_tag.setText("标签:" + dataBean.getType());
+		
+		rightMenu.setTitle(title);
+		rightMenu.setType(type);
 
 		
 		if (dataBean.getIsTwenty().equals("1")) {

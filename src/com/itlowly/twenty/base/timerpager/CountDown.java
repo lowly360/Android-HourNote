@@ -24,13 +24,19 @@ public class CountDown extends ContentBasePager {
 	private TextView tv_hour;
 	private TextView tv_cen;
 	private TextView tv_sce;
-	private ImageView iv_red_dot;
 	private int hour;
 	private int cen;
 	private int sce;
 	private RotateAnimation redDotRotate;
 	private LocalNoteDB db;
 	private DataBean dataBean;
+	
+	protected boolean flag = true;
+	private Thread thread = null;
+	private TimerActivity activity;
+	private RotateAnimation outRotate;
+	private RotateAnimation inRotate;
+
 
 	private long time;
 
@@ -52,29 +58,39 @@ public class CountDown extends ContentBasePager {
 		tv_hour = (TextView) mRootView.findViewById(R.id.tv_hour);
 		tv_cen = (TextView) mRootView.findViewById(R.id.tv_cen);
 		tv_sce = (TextView) mRootView.findViewById(R.id.tv_sce);
-		iv_red_dot = (ImageView) mRootView.findViewById(R.id.iv_red_dot);
 
 		db = new LocalNoteDB(mActivity);
 		dataBean = db.getDataBean(title, type);
 
 		String time = dataBean.getTime();
+		
+		
 
 		long timeLong = Long.valueOf(time);
 
+		
+		
 		hour = LongToTime.getTimeHour(timeLong);
 		cen = LongToTime.getTimecen(timeLong);
 		sce = LongToTime.getTimeSce(timeLong);
 
 		tv_hour.setText("" + hour);
-		if (cen <= 10) {
+		if (cen < 10) {
 			tv_cen.setText("0" + cen);
 		} else {
 			tv_cen.setText("" + cen);
 		}
-		if (sce <= 10) {
+		if (sce < 10) {
 			tv_sce.setText("0" + sce);
 		} else {
 			tv_sce.setText("" + sce);
+		}
+		
+		if (timeLong<=0) {
+			tv_hour.setTextSize(35);
+			tv_hour.setText("计时完成");
+			tv_cen.setText("00");
+			tv_sce.setText("00");
 		}
 
 		setAnimation();
@@ -83,28 +99,28 @@ public class CountDown extends ContentBasePager {
 	}
 
 	private void setAnimation() {
-		RotateAnimation outRotate = new RotateAnimation(0, 359,
+		outRotate = new RotateAnimation(0, 359,
 				Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
 				0.5f);
 
 		outRotate.setInterpolator(new LinearInterpolator());
 
-		outRotate.setDuration(5000);
+		outRotate.setDuration(60000);
 
 		outRotate.setRepeatCount(Animation.INFINITE);
 
-		iv_circle_out.startAnimation(outRotate);
+	
 
-		RotateAnimation inRotate = new RotateAnimation(0, -359,
+		inRotate = new RotateAnimation(0, 359,
 				Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
 				0.5f);
 		inRotate.setInterpolator(new LinearInterpolator());
 
-		inRotate.setDuration(4000);
+		inRotate.setDuration(10000);
 
 		inRotate.setRepeatCount(Animation.INFINITE);
 
-		iv_circle_in.startAnimation(inRotate);
+		
 
 		redDotRotate = new RotateAnimation(0, 359, Animation.RELATIVE_TO_SELF,
 				0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
@@ -119,12 +135,19 @@ public class CountDown extends ContentBasePager {
 			switch (msg.what) {
 			case 0:
 				if (flag) {
-					
-					iv_red_dot.startAnimation(redDotRotate);
 					// 更新UI
 					updateTimeUI();
 				}
-
+				break;
+			case 1:
+				tv_hour.setTextSize(35);
+				tv_hour.setText("计时完成");
+				tv_cen.setText("00");
+				tv_sce.setText("00");
+				
+				iv_circle_in.clearAnimation();
+				iv_circle_out.clearAnimation();
+				
 				break;
 			}
 		};
@@ -149,14 +172,14 @@ public class CountDown extends ContentBasePager {
 		}
 	}
 
-	protected boolean flag = true;
-	private Thread thread = null;
-	private TimerActivity activity;
-
-
+	
 
 	public void stopCount() {
-		iv_red_dot.clearAnimation();
+		iv_circle_out.clearAnimation();
+		
+		iv_circle_in.clearAnimation();
+		
+		iv_circle_out.clearAnimation();
 		flag = false;
 		if (thread!=null) {
 			thread.interrupt();
@@ -171,6 +194,21 @@ public class CountDown extends ContentBasePager {
 	public void startCount(final long timeScr) {
 		flag = true;
 		
+		if (timeScr<=0) {
+			tv_hour.setTextSize(35);
+			tv_hour.setText("计时完成");
+			tv_cen.setText("00");
+			tv_sce.setText("00");
+			
+			flag = false;
+			
+			return ;	
+			
+		}
+		
+		iv_circle_in.startAnimation(outRotate);
+		
+		iv_circle_out.startAnimation(inRotate);
 		this.time = timeScr / 1000;
 
 		if (thread == null) {
@@ -181,6 +219,13 @@ public class CountDown extends ContentBasePager {
 						SystemClock.sleep(1000);
 						handler.sendEmptyMessage(0);// 设置每秒发送一次消息
 						time = time - 1;
+						
+						
+						if (time == 0) {
+							flag = false;
+							//发送计时完成消息
+							handler.sendEmptyMessage(1);
+						}
 					}
 				}
 			};
@@ -189,6 +234,10 @@ public class CountDown extends ContentBasePager {
 
 	}
 
+	/**
+	 * 返回的是秒，不是毫秒
+	 * @return
+	 */
 	public long getTime() {
 		return time;
 	}

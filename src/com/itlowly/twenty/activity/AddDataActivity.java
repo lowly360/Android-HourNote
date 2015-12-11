@@ -126,12 +126,12 @@ public class AddDataActivity extends Activity implements OnClickListener {
 				LocalNoteDB db = new LocalNoteDB(this);
 				addData = db.addData(mTitleString, mContentString,
 							String.valueOf(System.currentTimeMillis()), "72000000",
-							mCurrenerTag,"1");
+							mCurrenerTag,"1",1);
 			}else {
 				LocalNoteDB db = new LocalNoteDB(this);
 				addData = db.addData(mTitleString, mContentString,
 							String.valueOf(System.currentTimeMillis()), "0",
-							mCurrenerTag,"0");
+							mCurrenerTag,"0",1);
 			}
 
 			

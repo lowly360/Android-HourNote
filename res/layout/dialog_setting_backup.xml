@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="312dp"
+    android:layout_height="255dp"
+    android:layout_margin="1dp"
+    android:background="@drawable/dialog_bg" >
+
+    <TextView
+        android:id="@+id/tv_backup_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="58dp"
+        android:singleLine="true"
+        android:text="备份与还原"
+        android:textColor="#67997b"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/tv_backup_backuptosd"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_below="@id/tv_backup_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="备份到SD卡"
+        android:textColor="#9000"
+        android:textSize="26sp" />
+
+    <TextView
+        android:id="@+id/tv_backup_backupfromsd"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_below="@id/tv_backup_backuptosd"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="从SD卡还原"
+        android:textColor="#9000"
+        android:textSize="26sp" />
+
+  
+
+</RelativeLayout>

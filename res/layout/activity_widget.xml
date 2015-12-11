@@ -9,10 +9,11 @@
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true" 
+        android:layout_centerVertical="true"
         android:orientation="vertical"
-        android:minHeight="200dp"
         android:background="@drawable/listview_item_bg_shape"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
+        android:padding="10dp"
         >
 
         <TextView

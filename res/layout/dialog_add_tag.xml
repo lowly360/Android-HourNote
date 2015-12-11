@@ -42,6 +42,7 @@
         android:src="@drawable/dialog_btn_cancel" />
 
     <TextView
+        android:id="@+id/tv_dialog_hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="222dp"
+    android:layout_height="185dp"
+    android:layout_margin="1dp"
+    android:background="@drawable/dialog_bg2" >
+
+    <ImageView
+        android:id="@+id/iv_ok"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="50dp"
+        android:src="@drawable/dialog_btn_ok" />
+
+    <ImageView
+        android:id="@+id/iv_cancel"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/iv_ok"
+        android:layout_marginLeft="50dp"
+        android:src="@drawable/dialog_btn_cancel" />
+
+    <TextView
+        android:id="@+id/tv_dialog_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:singleLine="true"
+        android:text="您确定"
+        android:textColor="@color/title_yes"
+        android:textSize="30sp" />
+    
+    <TextView 
+         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="要删除所有数据？"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/history_delete"
+        android:textSize="22sp"
+        android:layout_below="@id/tv_dialog_hint"
+        />
+
+</RelativeLayout>

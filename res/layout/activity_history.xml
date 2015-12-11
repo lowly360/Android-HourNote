@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1000"
+    android:orientation="vertical" xmlns:app="http://schemas.android.com/apk/res/com.itlowly.twenty">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="#fff"
+        >
+
+        <ImageButton
+            android:id="@+id/btn_history_menu"
+            android:layout_width="27dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:background="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/btn_back" />
+        
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="历史记录"
+            android:textSize="24sp"
+            android:textColor="@color/title_yes"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#2000" />
+    
+    <TextView 
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="先选好某一记录后，再按还原按钮恢复"
+        android:textColor="#9000"
+        android:gravity="center"
+        />
+    
+    <ListView 
+        android:id="@+id/lv_history"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:dividerHeight="3dp"
+        android:divider="@null"
+        android:scrollbars="none"
+        android:layout_margin="5dp"
+        ></ListView>
+
+    <Button 
+        android:id="@+id/btn_history_clear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="清除所有纪录"
+        android:textColor="#fff"
+        android:textSize="24sp"
+        android:background="@drawable/history_btn_bg_shape"
+        />
+    
+
+</LinearLayout>

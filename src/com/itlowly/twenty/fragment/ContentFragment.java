@@ -88,7 +88,7 @@ public class ContentFragment extends BaseFragment {
 	
 	public void setCurrenerPager(int i){
 		if (i<contentList.size()) {
-			vpHome.setCurrentItem(i);
+			vpHome.setCurrentItem(i,false);
 		}
 	}
 	
@@ -128,5 +128,26 @@ public class ContentFragment extends BaseFragment {
 
 			container.removeView((View) object);
 		}
+	}
+	
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		if (mHomePager!=null) {
+			mHomePager.UpdateAll();
+		}
+		
+		
+		super.onPause();
+	}
+	
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		if (mHomePager!=null) {
+			mHomePager.UpdateAll();
+		}
+		
+		super.onResume();
 	}
 }

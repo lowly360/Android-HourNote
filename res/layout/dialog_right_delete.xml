@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="312dp"
+    android:layout_height="255dp"
+    android:layout_margin="1dp"
+    android:background="@drawable/dialog_bg" >
+
+    <TextView
+        android:id="@+id/tv_dialog_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="58dp"
+        android:singleLine="true"
+        android:text="你确定要删除"
+        android:textColor="#f9423a"
+        android:textSize="30sp" />
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/tv_right_delete_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_dialog_hint" 
+        android:layout_centerHorizontal="true"
+        android:text="删除文本标题"
+        android:textSize="32sp"
+        />
+
+    <ImageView
+        android:id="@+id/iv_ok"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="45dp"
+        android:layout_marginRight="50dp"
+        android:src="@drawable/dialog_btn_ok" />
+
+    <ImageView
+        android:id="@+id/iv_cancel"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/iv_ok"
+        android:layout_marginLeft="50dp"
+        android:src="@drawable/dialog_btn_cancel" />
+
+</RelativeLayout>

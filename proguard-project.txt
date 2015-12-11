@@ -18,3 +18,46 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+-libraryjars libs/Bmob_Push_V0.6beta_20150408.jar
+-libraryjars libs/BmobSDK_V3.4.4_0930.jar
+-libraryjars libs/commons-codec.jar
+-libraryjars libs/guava-r09.jar
+-libraryjars libs/okhttp-2.4.0.jar
+-libraryjars libs/okio-1.4.0.jar
+
+-ignorewarnings
+-optimizationpasses 5
+-dontusemixedcaseclassnames
+-verbose
+
+
+-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Application
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver
+-keep public class * extends android.content.ContentProvider
+-keep public class * extends android.app.backup.BackupAgentHelper
+-keep public class * extends android.preference.Preference
+-keep public class com.android.vending.licensing.ILicensingService
+-keep public abstract interface com.asqw.android.Listener{
+	public protected <methods>;
+}
+
+#这是保持侧边栏类的文件
+-keep class com.jeremyfeinstein.slidingmenu.lib.** {*;}
+	
+
+# 这里根据具体的SDK版本修改
+-keepattributes Signature
+-keep class cn.bmob.v3.** {*;}
+
+# 保证继承自BmobObject、BmobUser类的JavaBean不被混淆
+-keep class com.itlowly.twenty.bean.myUser{*;}
+-keep class com.itlowly.twenty.bean.FileNameTable{*;}
+
+# 如果你使用了okhttp、okio的包，请添加以下混淆代码
+-dontwarn com.squareup.okhttp.**
+-keep class com.squareup.okhttp.** { *;}
+-keep interface com.squareup.okhttp.** { *; }
+-dontwarn okio.**

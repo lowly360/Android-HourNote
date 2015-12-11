@@ -1,0 +1,56 @@
+# view res/layout/activity_timer.xml #generated:60
+-keep class android.support.v4.view.ViewPager { <init>(...); }
+
+# view AndroidManifest.xml #generated:40
+-keep class com.itlowly.twenty.activity.AddDataActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:48
+-keep class com.itlowly.twenty.activity.DetailActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:54
+-keep class com.itlowly.twenty.activity.EditActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:73
+-keep class com.itlowly.twenty.activity.HistoryActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:38
+-keep class com.itlowly.twenty.activity.HomeActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:70
+-keep class com.itlowly.twenty.activity.LoginActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:27
+-keep class com.itlowly.twenty.activity.SplashActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:46
+-keep class com.itlowly.twenty.activity.TimerActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:57
+-keep class com.itlowly.twenty.activity.UserActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:60
+-keep class com.itlowly.twenty.activity.WidgetActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:83
+-keep class com.itlowly.twenty.receiver.MyWidgetProvider { <init>(...); }
+
+# view AndroidManifest.xml #generated:76
+-keep class com.itlowly.twenty.service.CountDownService { <init>(...); }
+
+# view AndroidManifest.xml #generated:77
+-keep class com.itlowly.twenty.service.WidgetSetService { <init>(...); }
+
+# view res/layout/content_help_pager.xml #generated:39
+# view res/layout/content_help_pager.xml #generated:52
+# view res/layout/content_help_pager.xml #generated:64
+# view res/layout/content_help_pager.xml #generated:76
+# view res/layout/content_help_pager.xml #generated:83
+# view res/layout/content_help_pager.xml #generated:96
+-keep class com.itlowly.twenty.view.ItemOfHelpPager { <init>(...); }
+
+# view res/layout/fragment_content.xml #generated:7
+-keep class com.itlowly.twenty.view.NoScrollViewPager { <init>(...); }
+
+# view res/layout/slidingmenumain.xml #generated:2
+-keep class com.jeremyfeinstein.slidingmenu.lib.SlidingMenu { <init>(...); }
+

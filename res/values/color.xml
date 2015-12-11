@@ -5,9 +5,9 @@
     <color name="title_yes">#67997b</color>
     <color name="tag_chosen">#1000</color>
     <color name="green">#67997b</color>
-    <color name= "background">#1000</color>
-    <color name= "my_gray">#e5e5e5</color>
-  
-    
-
+    <color name="background">#1000</color>
+    <color name="my_gray">#e5e5e5</color>
+    <color name="history_add">#6cace4</color>
+    <color name="history_edit">#26d07c</color>
+    <color name="history_delete">#F9423a</color>
 </resources>

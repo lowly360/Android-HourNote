@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.itlowly.twenty.R;
 import com.itlowly.twenty.activity.HomeActivity;
 import com.itlowly.twenty.activity.LoginActivity;
+import com.itlowly.twenty.activity.UserActivity;
 import com.itlowly.twenty.base.impl.SettingPager;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
@@ -61,10 +62,10 @@ public class LeftMenuFragment extends BaseFragment implements OnClickListener {
 			String nameString = mPre.getString("LocateUser", "LocalNote");
 			if (nameString.equals("LocalNote")) {
 				tv_login_logout.setText("登录");
-			}else {
+			} else {
 				tv_login_logout.setText(nameString);
 			}
-			
+
 		}
 
 		initListener();
@@ -124,22 +125,20 @@ public class LeftMenuFragment extends BaseFragment implements OnClickListener {
 			if (locateMode) {
 				Toast.makeText(mActivity, "现在是本地模式,登录请去设置中设置账号", 0).show();
 			} else {
-				boolean equals = mPre.getString("LocateUser", "LocalNote").equals("LocalNote");
+				boolean equals = mPre.getString("LocateUser", "LocalNote")
+						.equals("LocalNote");
 				if (!equals) {
-					
+					HomeActivity mainUI = (HomeActivity) mActivity;
 
-					tv_login_logout.setText("登录");
+					Intent userIntent = new Intent(mActivity,
+							UserActivity.class);
 
-					ContentFragment content = (ContentFragment) mainUi
-							.getContentFragment();
-					SettingPager settingPager = content.getSettingPager();
-					settingPager.loginout();
+					mainUI.startActivityForResult(userIntent, 100);
 
-				}else {
-					mainUi.startActivity(new Intent(mainUi,LoginActivity.class));
+				} else {
+					mainUi.startActivity(new Intent(mainUi, LoginActivity.class));
 					mainUi.finish();
 				}
-
 			}
 
 			break;
@@ -191,7 +190,7 @@ public class LeftMenuFragment extends BaseFragment implements OnClickListener {
 
 	private void talk() {
 
-		String[] talk = new String[] { "别点了，点了也没用", "别再点我，制作者还没完成这个功能呢！",
+		String[] talk = new String[] { "别点了，点了也没用", "别再点我，制作者还没完成自定义头像功能呢！",
 				"你还点我，想被剁手啊！", "还点我，我确定你是小儿多动症了，得治！！",
 				"好吧！我准备自动关闭这个软件了，服了你了，别再点了", "3,2,1!boom!!!",
 				"还有3秒就自动关闭了，再见啦！！！", "哈哈，吓你的！未来的版本我会更加智能的，敬请期待喔！" };
@@ -244,16 +243,15 @@ public class LeftMenuFragment extends BaseFragment implements OnClickListener {
 			tv_login_logout.setTextColor(Color.GRAY);
 
 		} else {// 用户模式
-			
-			
+
 			String nameString = mPre.getString("LocateUser", "LocalNote");
-			
+
 			if (nameString.equals("LocalNote")) {
 				tv_login_logout.setText("登录");
-			}else {
+			} else {
 				tv_login_logout.setText(nameString);
 			}
-			
+
 			tv_login_logout.setTextColor(Color.WHITE);
 
 		}

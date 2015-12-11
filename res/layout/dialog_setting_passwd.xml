@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="312dp"
+    android:layout_height="255dp"
+    android:layout_margin="1dp"
+    android:background="@drawable/dialog_bg2" >
+
+    <ImageView
+        android:id="@+id/iv_ok"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="50dp"
+        android:src="@drawable/dialog_btn_ok" />
+
+    <ImageView
+        android:id="@+id/iv_cancel"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/iv_ok"
+        android:layout_marginLeft="50dp"
+        android:src="@drawable/dialog_btn_cancel" />
+
+    <TextView
+        android:id="@+id/tv_dialog_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:singleLine="true"
+        android:text="本地密码"
+        android:textColor="@color/title_yes"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/et_setting_password_first"
+        android:layout_width="220dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/tv_dialog_hint"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/dialog_edit_bg"
+        android:ems="6"
+        android:gravity="center"
+        android:hint="请新输入密码"
+        android:inputType="textPassword"
+        android:singleLine="true"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/et_setting_password_second"
+        android:layout_width="220dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/et_setting_password_first"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/dialog_edit_bg"
+        android:ems="6"
+        android:gravity="center"
+        android:hint="请再次输入密码"
+        android:inputType="textPassword"
+        android:singleLine="true"
+        android:textSize="16sp" />
+
+</RelativeLayout>
