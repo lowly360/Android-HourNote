@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/bg_color_grey"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical"
+            android:background="@color/bg_color"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:text="本地模式"
+                android:textSize="@dimen/activity_horizontal_margin"
+                android:textColor="@color/txt333"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5px"
+                android:background="@color/bg_color_grey"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:text="本地密码"
+                android:textSize="@dimen/activity_horizontal_margin"
+                android:textColor="@color/txt333"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5px"
+                android:background="@color/bg_color_grey"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:text="历史记录"
+                android:textSize="@dimen/activity_horizontal_margin"
+                android:textColor="@color/txt333"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5px"
+                android:background="@color/bg_color_grey"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:text="帐号与安全"
+                android:textSize="@dimen/activity_horizontal_margin"
+                android:textColor="@color/txt333"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical"
+            android:background="@color/bg_color"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:text="备份与还原"
+                android:textSize="@dimen/activity_horizontal_margin"
+                android:textColor="@color/txt333"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5px"
+                android:background="@color/bg_color_grey"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:text="同步数据"
+                android:textSize="@dimen/activity_horizontal_margin"
+                android:textColor="@color/txt333"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5px"
+                android:background="@color/bg_color_grey"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:text="删除数据"
+                android:textSize="@dimen/activity_horizontal_margin"
+                android:textColor="@color/delete_red"
+                />
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:layout_marginTop="24dp"
+            android:background="@color/bg_color"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:text="注销"
+            android:textSize="@dimen/activity_horizontal_margin"
+            android:textColor="@color/txt333"
+            />
+    </LinearLayout>
+</ScrollView>
