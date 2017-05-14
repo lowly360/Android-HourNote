@@ -20,8 +20,9 @@ import android.widget.FrameLayout;
 import com.itlowly.twenty.R;
 import com.itlowly.twenty.fragment.AboutFragment;
 import com.itlowly.twenty.fragment.home.HomeFragment;
+import com.zhy.changeskin.base.BaseSkinActivity;
 
-public class HomeActivity extends AppCompatActivity
+public class HomeActivity extends BaseSkinActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private FragmentManager fm;
