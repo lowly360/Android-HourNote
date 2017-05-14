@@ -3,4 +3,12 @@
     <color name="colorPrimary">#323431</color>
     <color name="colorPrimaryDark">#272826</color>
     <color name="colorAccent">#a1a1a1</color>
+
+    <color name="bg_color">#fff</color>
+    <color name="bg_color_grey">#eaeaea</color>
+
+    <color name="txt333">#333333</color>
+    <color name="txt666">#666666</color>
+    <color name="txt999">#999999</color>
+    <color name="delete_red">#f45454</color>
 </resources>

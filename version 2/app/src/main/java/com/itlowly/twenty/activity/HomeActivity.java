@@ -19,6 +19,8 @@ import android.widget.FrameLayout;
 
 import com.itlowly.twenty.R;
 import com.itlowly.twenty.fragment.AboutFragment;
+import com.itlowly.twenty.fragment.HelpFragment;
+import com.itlowly.twenty.fragment.SettingFragment;
 import com.itlowly.twenty.fragment.home.HomeFragment;
 import com.zhy.changeskin.base.BaseSkinActivity;
 
@@ -29,20 +31,28 @@ public class HomeActivity extends BaseSkinActivity
     private FragmentTransaction transaction;
     private HomeFragment homeFragment;
     private AboutFragment aboutFragment;
+    private HelpFragment helpFragment;
+    private SettingFragment settingFragment;
+    private Toolbar toolbar;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Snackbar.make(view, "请选择你要添加的类型", Snackbar.LENGTH_LONG)
+                        .setAction("取消", new View.OnClickListener(){
+                            @Override
+                            public void onClick(View v) {
+                            }
+                        }).show();
             }
         });
 
@@ -109,21 +119,39 @@ public class HomeActivity extends BaseSkinActivity
 
         if (id == R.id.nav_home) {
             changeHomeFragment(homeFragment);
+            setToolBarTitle("HourNote");
+            fab.show();
         } else if (id == R.id.nav_help) {
-
+            if (helpFragment == null) {
+                helpFragment = new HelpFragment();
+            }
+            changeHomeFragment(helpFragment);
+            setToolBarTitle("帮助");
+            fab.hide();
         } else if (id == R.id.nav_setting) {
-
+            if (settingFragment == null) {
+                settingFragment = new SettingFragment();
+            }
+            changeHomeFragment(settingFragment);
+            setToolBarTitle("设置");
+            fab.hide();
         } else if (id == R.id.nav_about) {
             if (aboutFragment == null) {
                 aboutFragment = new AboutFragment();
             }
             changeHomeFragment(aboutFragment);
+            setToolBarTitle("关于");
+            fab.hide();
         } else if (id == R.id.nav_exit) {
-
+            System.exit(0);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void setToolBarTitle(String title){
+        toolbar.setTitle(title);
     }
 }

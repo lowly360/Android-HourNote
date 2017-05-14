@@ -37,8 +37,8 @@ public class HomeFragment extends BaseFragment {
         }
 
         TestAdapter testAdapter = new TestAdapter(mActivity, mData, R.layout.item_lv_test);
-
-        lv_groups.setAdapter(testAdapter);
+        TestAdapter tagAdapter = new TestAdapter(mActivity,mData,R.layout.item_lv_tag);
+        lv_groups.setAdapter(tagAdapter);
         lv_notes.setAdapter(testAdapter);
 
     }
