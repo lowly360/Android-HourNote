@@ -21,13 +21,9 @@
             android:title="关于" />
     </group>
 
-    <item android:title="其他">
-        <menu>
-            <item
-                android:id="@+id/nav_exit"
-                android:icon="@drawable/ic_exit_to_app_grey_500_24dp"
-                android:title="退出" />
-        </menu>
-    </item>
+    <item
+        android:id="@+id/nav_exit"
+        android:icon="@drawable/ic_exit_to_app_grey_500_24dp"
+        android:title="退出" />
 
 </menu>

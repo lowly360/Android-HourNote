@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_color_grey"
+    android:background="@color/skin_page_bg_color"
     android:orientation="vertical">
 
    <ImageView
@@ -17,6 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textColor="@color/skin_txt_color_sceond"
+        android:textSize="16sp"
         android:text="@string/app_name"
         />
 
@@ -27,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:orientation="vertical"
-        android:background="@color/bg_color"
+        android:background="@color/skin_item_bg_color"
         >
         <TextView
             android:layout_width="match_parent"
@@ -36,12 +38,12 @@
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:text="去评分"
             android:textSize="@dimen/activity_horizontal_margin"
-            android:textColor="@color/txt333"
+            android:textColor="@color/skin_txt_color_main"
             />
-        <View
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="1.5px"
-            android:background="@color/bg_color_grey"
+            android:background="@color/skin_page_bg_color"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             />
@@ -53,13 +55,13 @@
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:text="功能介绍"
             android:textSize="@dimen/activity_horizontal_margin"
-            android:textColor="@color/txt333"
+            android:textColor="@color/skin_txt_color_main"
             />
 
-        <View
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="1.5px"
-            android:background="@color/bg_color_grey"
+            android:background="@color/skin_page_bg_color"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             />
@@ -71,13 +73,13 @@
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:text="检查新版本"
             android:textSize="@dimen/activity_horizontal_margin"
-            android:textColor="@color/txt333"
+            android:textColor="@color/skin_txt_color_main"
             />
 
-        <View
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="1.5px"
-            android:background="@color/bg_color_grey"
+            android:background="@color/skin_page_bg_color"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             />
@@ -89,7 +91,7 @@
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:text="联系我们"
             android:textSize="@dimen/activity_horizontal_margin"
-            android:textColor="@color/txt333"
+            android:textColor="@color/skin_txt_color_main"
             />
 
 
@@ -106,7 +108,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="4dp"
+        android:textColor="@color/skin_txt_color_sceond"
+        android:textSize="12sp"
         android:text="@string/app_right"
         />
 

@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.zhy.changeskin.SkinManager;
+import com.zhy.changeskin.constant.SkinConfig;
+
 /**
  * 通用适配器
  * @author lowly_pc  2016/1/4
@@ -46,7 +49,6 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder holder = ViewHolder.get(mContext, convertView, parent,
 				mLayoutId, position);
-		
 		convert(holder, getItem(position));
 		
 		return holder.getmConverView();

@@ -2,7 +2,7 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/bg_color_grey"
+    android:background="@color/skin_page_bg_color"
     android:layout_height="match_parent">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:orientation="vertical"
-            android:background="@color/bg_color"
+            android:background="@color/skin_item_bg_color"
             >
             <TextView
                 android:layout_width="match_parent"
@@ -24,12 +24,12 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:text="本地模式"
                 android:textSize="@dimen/activity_horizontal_margin"
-                android:textColor="@color/txt333"
+                android:textColor="@color/skin_txt_color_main"
                 />
-            <View
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1.5px"
-                android:background="@color/bg_color_grey"
+                android:background="@color/skin_page_bg_color"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 />
@@ -41,13 +41,13 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:text="本地密码"
                 android:textSize="@dimen/activity_horizontal_margin"
-                android:textColor="@color/txt333"
+                android:textColor="@color/skin_txt_color_main"
                 />
 
-            <View
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1.5px"
-                android:background="@color/bg_color_grey"
+                android:background="@color/skin_page_bg_color"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 />
@@ -59,13 +59,13 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:text="历史记录"
                 android:textSize="@dimen/activity_horizontal_margin"
-                android:textColor="@color/txt333"
+                android:textColor="@color/skin_txt_color_main"
                 />
 
-            <View
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1.5px"
-                android:background="@color/bg_color_grey"
+                android:background="@color/skin_page_bg_color"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 />
@@ -77,7 +77,7 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:text="帐号与安全"
                 android:textSize="@dimen/activity_horizontal_margin"
-                android:textColor="@color/txt333"
+                android:textColor="@color/skin_txt_color_main"
                 />
         </LinearLayout>
 
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:orientation="vertical"
-            android:background="@color/bg_color"
+            android:background="@color/skin_item_bg_color"
             >
             <TextView
                 android:layout_width="match_parent"
@@ -95,12 +95,12 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:text="备份与还原"
                 android:textSize="@dimen/activity_horizontal_margin"
-                android:textColor="@color/txt333"
+                android:textColor="@color/skin_txt_color_main"
                 />
-            <View
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1.5px"
-                android:background="@color/bg_color_grey"
+                android:background="@color/skin_page_bg_color"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 />
@@ -112,13 +112,13 @@
                 android:paddingLeft="@dimen/activity_horizontal_margin"
                 android:text="同步数据"
                 android:textSize="@dimen/activity_horizontal_margin"
-                android:textColor="@color/txt333"
+                android:textColor="@color/skin_txt_color_main"
                 />
 
-            <View
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1.5px"
-                android:background="@color/bg_color_grey"
+                android:background="@color/skin_page_bg_color"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 />
@@ -140,11 +140,11 @@
             android:layout_height="48dp"
             android:gravity="center_vertical"
             android:layout_marginTop="24dp"
-            android:background="@color/bg_color"
+            android:background="@color/skin_item_bg_color"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:text="注销"
             android:textSize="@dimen/activity_horizontal_margin"
-            android:textColor="@color/txt333"
+            android:textColor="@color/skin_txt_color_main"
             />
     </LinearLayout>
 </ScrollView>

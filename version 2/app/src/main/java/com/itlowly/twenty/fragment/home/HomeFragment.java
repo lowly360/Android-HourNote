@@ -6,6 +6,8 @@ import android.widget.ListView;
 
 import com.itlowly.twenty.R;
 import com.itlowly.twenty.fragment.BaseFragment;
+import com.zhy.changeskin.SkinManager;
+import com.zhy.changeskin.attr.SkinAttrSupport;
 
 import java.util.ArrayList;
 import java.util.List;
